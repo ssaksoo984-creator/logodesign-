@@ -220,17 +220,24 @@ const COLORS = [
 const SECTIONS = [
   {title:"기본 정보", items:[
     {id:"name_ko", type:"text", label:"회사명 (국문)", ph:"예: 여울 픽처스"},
-    {id:"name_en", type:"text", label:"회사명 (영문 표기)", ph:"예: Yeoul Pictures"},
+    {id:"name_en", type:"text", label:"회사명 (영문 표기)", hint:"철자와 띄어쓰기, 대소문자까지 확정된 표기로 적어주세요", ph:"예: Yeoul Pictures"},
+    {id:"name_short", type:"text", label:"줄여서 부르는 이름이나 이니셜이 있나요 (선택)", ph:"예: 여울, YP"},
+    {id:"founded", type:"text", label:"설립 연도 (선택)", hint:"로고에 'EST. 2026'처럼 넣을 수도 있어요", ph:"예: 2026"},
     {id:"meaning", type:"textarea", label:"회사명에 담긴 뜻이나 이야기가 있다면 알려주세요"},
+    {id:"status", type:"single", label:"지금 어떤 상황인가요?", options:["처음 만드는 로고예요","기존 로고를 새로 바꿔요","회사명이 아직 확정 전이에요"]},
+    {id:"keep_old", type:"textarea", label:"기존 로고가 있다면, 남기고 싶은 부분과 바꾸고 싶은 이유", hint:"처음 만드시는 경우 비워두세요"},
     {id:"contact", type:"text", label:"담당자 성함과 연락처"}
   ]},
-  {title:"어떤 작품을 만드시나요", items:[
+  {title:"회사와 작품", items:[
     {id:"genre", type:"multi", label:"주로 제작하시는 분야", hint:"여러 개 골라주셔도 돼요", options:["장편 영화","단편 영화","다큐멘터리","드라마/OTT 시리즈","애니메이션","광고","뮤직비디오","기타"]},
     {id:"works", type:"textarea", label:"대표작이나 준비 중인 작품이 있다면 적어주세요"},
-    {id:"films", type:"textarea", label:"좋아하는 영화나 감독, 회사가 지향하는 영화의 톤", hint:"로고 분위기를 잡는 데 가장 큰 힌트가 돼요"}
+    {id:"films", type:"textarea", label:"좋아하는 영화나 감독, 회사가 지향하는 영화의 톤", hint:"로고 분위기를 잡는 데 가장 큰 힌트가 돼요"},
+    {id:"audience", type:"multi", label:"로고를 가장 자주 보게 될 사람은 누구인가요?", options:["극장 관객","OTT 시청자","해외 영화제·바이어","투자사·배급사·방송사","배우·스태프","광고 클라이언트"]},
+    {id:"difference", type:"textarea", label:"다른 제작사와 다른 점을 한두 문장으로 말한다면", hint:"예: 신인 감독의 첫 장편을 주로 만들어요"}
   ]},
   {title:"원하는 첫인상", items:[
     {id:"mood", type:"multi", max:3, label:"로고를 본 사람이 이렇게 느꼈으면 좋겠어요", hint:"최대 3개까지 골라주세요", options:["시네마틱한","클래식한","실험적인","따뜻한","차가운","신뢰감 있는","젊은","고급스러운","대담한","잔잔한","유머러스한","독립영화다운"]},
+    {id:"one_thing", type:"text", label:"로고가 딱 한 가지만 전할 수 있다면, 무엇이었으면 하나요?", ph:"예: 오래 남는 이야기"},
     {id:"motif", type:"multi", label:"넣고 싶은 모티프가 있나요", options:["빛","필름/프레임","렌즈/카메라","회사명의 의미","추상적인 도형","글자만으로 충분해요"]}
   ]},
   {title:"끌리는 로고 고르기", intro:"실제 영화사와 스튜디오 로고를 성격별로 모았어요. 마음에 드는 걸 자유롭게 눌러주세요. 3~6개 정도면 충분해요.", items:[
@@ -238,6 +245,7 @@ const SECTIONS = [
     {id:"likes_note", type:"text", label:"고른 로고에서 특히 좋았던 점 (선택)", ph:"예: A24처럼 짧고 단단한 느낌"}
   ]},
   {title:"취향 고르기", intro:"각 묶음을 하나의 느낌으로 보시고 더 끌리는 쪽을 골라주세요. 이유를 한 줄 적어주시면 더 정확해져요.", items:[
+    {id:"script", type:"single", label:"로고의 중심이 될 글자", options:["영문 중심","국문 중심","국문과 영문 함께","심볼만으로도 쓰이게","잘 모르겠어요"]},
     {id:"form", type:"pick", label:"어떤 형태가 끌리세요?", options:[
       {k:"워드마크", d:"글자만", l:["a24","neon","lionsgate","bleecker-street"]},
       {k:"심볼 + 글자", d:"그림과 이름", l:["studio-ghibli","new-line-cinema","magnolia-pictures","legendary-pictures"]},
@@ -249,30 +257,28 @@ const SECTIONS = [
     {id:"era", type:"pick", label:"시대감", options:[
       {k:"클래식", d:"전통 있는 영화사처럼", l:["columbia-pictures","lucasfilm-ltd","metro-goldwyn-mayer","tristar-pictures"]},
       {k:"모던", d:"요즘 스튜디오처럼", l:["neon","barunson-e-a","ifc-films","bleecker-street"]}]},
-    {id:"weight", type:"pick", label:"무게감", options:[
-      {k:"묵직하게", l:["hbo","miramax","orion-pictures","cartoon-saloon"]},
-      {k:"가볍게", l:["focus-features","new-line-cinema","village-roadshow-pictures","annapurna-pictures"]}]},
     {id:"detail", type:"pick", label:"디테일", options:[
       {k:"미니멀", d:"최소한으로", l:["a24","plan-b-entertainment","focus-features","lionsgate"]},
       {k:"디테일", d:"요소를 풍성하게", l:["syncopy","lucasfilm-ltd","paramount-pictures","columbia-pictures"]}]},
-    {id:"color", type:"pick", label:"색", options:[
-      {k:"흑백", d:"한 가지 색으로", l:["a24","hbo","neon","syncopy"]},
-      {k:"포인트 컬러", d:"상징색이 있는", l:["netflix","mappa","gaumont","kyoto-animation"]}]},
-    {id:"palette_mood", type:"pick", label:"색감은 어느 쪽이 끌리세요?", hint:"전달해주신 레퍼런스예요. 로고 자체보다 색을 쓰는 방식을 봐주세요.", options:[
+    {id:"palette_mood", type:"pick", label:"색감은 어느 쪽이 끌리세요?", hint:"로고 자체보다 색을 쓰는 방식을 봐주세요.", options:[
       {k:"비비드 그라데이션", d:"빛이 번지는 듯한 화려한 배경", img:"gradient"},
       {k:"컬러 시스템", d:"한 로고를 여러 톤으로 바꿔 쓰기", img:"palette"},
       {k:"강한 단색 + 블랙", d:"쨍한 배경에 검은 로고", img:"lime"},
       {k:"블랙 & 화이트", d:"어두운 바탕에 흰 로고", img:"mono"}]},
-    {id:"point", type:"colors", max:2, label:"포인트 컬러를 골라주세요", hint:"최대 2개까지. 첫 번째는 메인, 두 번째는 보조 색으로 볼게요. 흑백을 고르셨다면 건너뛰셔도 돼요."}
+    {id:"point", type:"colors", max:2, label:"포인트 컬러를 골라주세요", hint:"최대 2개까지. 첫 번째는 메인, 두 번째는 보조 색으로 볼게요."}
   ]},
-  {title:"어디에 쓰이나요", items:[
-    {id:"usage", type:"multi", label:"로고가 쓰일 곳", options:["영화 오프닝/엔딩 크레딧","포스터","명함/서류","웹사이트","SNS 프로필","굿즈"]},
-    {id:"motion", type:"single", label:"오프닝용 모션 로고(움직이는 로고)도 필요하신가요?", options:["네, 필요해요","나중에 필요할 수도 있어요","아니요"]}
+  {title:"어디에 쓰이나요", intro:"작게 찍히는 곳이 많을수록 단순하고 잘 읽히는 형태가 필요해요.", items:[
+    {id:"usage", type:"multi", label:"로고가 쓰일 곳", options:["영화 오프닝/엔딩 크레딧","포스터 하단 크레딧","해외 영화제·마켓 자료","투자 제안서·피칭 자료","명함/서류","웹사이트","SNS 프로필","굿즈"]},
+    {id:"motion", type:"single", label:"오프닝용 모션 로고(움직이는 로고)도 필요하신가요?", options:["네, 필요해요","나중에 필요할 수도 있어요","아니요"]},
+    {id:"deliver", type:"multi", label:"받고 싶은 결과물", hint:"모르시면 비워두세요. 기본 구성으로 제안드릴게요.", options:["원본 파일 (AI·SVG·PNG)","가로형·세로형 조합","국문·영문 조합","심볼 단독 버전","흑백·반전 버전","간단한 사용 가이드","명함·레터헤드 적용","SNS 프로필 이미지"]},
+    {id:"trademark", type:"single", label:"상표 등록을 하실 계획인가요?", hint:"등록하실 예정이면 비슷한 상표가 있는지 미리 살펴보며 작업해요", options:["네, 할 거예요","고민 중이에요","아니요"]}
   ]},
   {title:"마지막으로", items:[
-    {id:"avoid", type:"textarea", label:"이런 느낌은 피하고 싶다 하는 게 있나요"},
+    {id:"avoid_tags", type:"multi", label:"피하고 싶은 것", options:["필름 릴·클래퍼보드 같은 흔한 아이콘","유행을 많이 타는 느낌","너무 화려한 장식","가볍거나 장난스러운 느낌","너무 차갑고 기업 같은 느낌","특정 회사와 비슷해 보이는 것"]},
+    {id:"avoid", type:"textarea", label:"그 밖에 피하고 싶은 느낌이나 색"},
     {id:"refs", type:"textarea", label:"그 밖에 참고하고 싶은 로고나 이미지 링크", hint:"인스타그램, 핀터레스트, 영화 포스터 링크 모두 좋아요"},
-    {id:"deadline", type:"text", label:"희망하시는 완료 시점", ph:"예: 11월 말, 영화제 출품 전"}
+    {id:"decider", type:"text", label:"시안을 보고 최종 결정하실 분", hint:"여러 분이 함께 보시면 모두 적어주세요", ph:"예: 대표님, 공동 프로듀서 2명"},
+    {id:"deadline", type:"text", label:"희망하시는 완료 시점", hint:"영화제 출품이나 개봉처럼 꼭 맞춰야 하는 날짜가 있다면 함께 적어주세요", ph:"예: 11월 말, 부산영화제 마켓 전"}
   ]}
 ];
 
@@ -348,12 +354,13 @@ function colorItem(item){
       b.setAttribute("aria-pressed", i>=0);
       b.querySelector(".ord").textContent = i===0 ? "메인" : i===1 ? "보조" : "";
     });
+    none.setAttribute("aria-pressed", !!st.none);
     previews.forEach(fn=>fn());
   };
   const toggle = (h) => {
     const i = st.list.findIndex(x=>x.toLowerCase()===h.toLowerCase());
     if (i>=0) st.list.splice(i,1);
-    else { if (st.list.length>=item.max){ limitMsg(msg, `${item.max}개까지 고를 수 있어요. 하나를 해제하고 다시 골라주세요.`); return; } st.list.push(h); }
+    else { if (st.list.length>=item.max){ limitMsg(msg, `${item.max}개까지 고를 수 있어요. 하나를 해제하고 다시 골라주세요.`); return; } st.list.push(h); st.none = false; }
     save(); syncAll();
   };
   COLORS.forEach(c => {
@@ -363,6 +370,9 @@ function colorItem(item){
     btns.push(b); grid.appendChild(b);
   });
   q.appendChild(grid);
+  const none = el("button",{type:"button",class:"chip",id:"point-none"}); none.textContent = "포인트 컬러 없이 흑백으로 충분해요";
+  none.addEventListener("click", () => { st.none = !st.none; if (st.none) st.list = []; save(); syncAll(); });
+  const noneRow = el("div",{class:"chips"}); noneRow.appendChild(none); q.appendChild(noneRow);
 
   const custom = el("div",{class:"custom"});
   const picker = el("input",{type:"color",id:"point-picker","aria-label":"직접 색 고르기",value:"#3a6ea5"});
@@ -479,7 +489,8 @@ function summary(){
       let v = state[item.id];
       if (item.type==="pick") v = v && v.choice ? v.choice + (v.note ? ` (이유: ${v.note})` : "") : "";
       else if (item.type==="gallery") v = (v||[]).filter(k=>LOGOS[k]).map(k=>LOGOS[k].n).join(", ");
-      else if (item.type==="colors") v = v && v.list && v.list.length
+      else if (item.type==="colors") v = v && v.none ? "흑백으로 충분해요" + (v.note ? ` (메모: ${v.note})` : "")
+        : v && v.list && v.list.length
         ? v.list.map((h,i)=>`${i===0?"메인":"보조"} ${colorName(h)} ${h.toUpperCase()}`).join(" / ") + (v.note ? ` (메모: ${v.note})` : "")
         : (v && v.note ? `(메모: ${v.note})` : "");
       else if (Array.isArray(v)) v = v.join(", ");
