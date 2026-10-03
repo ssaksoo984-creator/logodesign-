@@ -106,6 +106,17 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .btn{font:inherit;font-weight:600;font-size:16px;background:var(--ink);color:var(--paper);border:0;
   border-radius:8px;padding:14px 20px;margin-top:14px;cursor:pointer;width:100%}
 #status{margin:12px 0 0;font-size:15px}
+.steps{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:22px;counter-reset:st}
+.steps > li{counter-increment:st;display:grid;grid-template-columns:28px minmax(0,1fr);gap:4px 12px;align-items:start}
+.steps > li::before{content:counter(st);grid-row:1 / span 3;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--paper);
+  display:grid;place-items:center;font-family:var(--latin);font-weight:600;font-size:14px}
+.steps h3{margin:2px 0 0;font-size:16px}
+.steps .btn{margin-top:8px}
+.btn.alt{background:var(--chip);color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.row .btn{width:auto;flex:1 1 180px;margin-top:0}
+.addr{font-family:var(--latin);font-size:15px;user-select:all;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:8px 12px;overflow-wrap:anywhere}
+#board{display:block;width:100%;height:auto;margin-top:10px;border:1px solid var(--line);border-radius:6px;background:#fff}
 #out{font-size:14px;min-height:200px;margin-top:12px}
 .credit{margin-top:40px;font-size:12.5px;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -118,9 +129,30 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   <p class="small">The example logos are work by various designers, grouped by style for reference. Your answers save automatically on this device.</p>
   <div id="form"></div>
   <section class="end">
-    <h2>All done?</h2>
-    <p class="small" style="margin:0">The button below copies all your answers as text. Paste them into an email or message and send them to me.</p>
-    <button class="btn" id="copy" type="button">Copy my answers</button>
+    <h2>Send your answers</h2>
+    <p class="small" style="margin:0">Two quick steps. The image shows exactly which logos and colors you picked.</p>
+    <ol class="steps">
+      <li>
+        <h3>Save your summary image</h3>
+        <span class="small">It updates as you answer. On a phone you can also press and hold the image to save it.</span>
+        <div>
+          <button class="btn" id="save-img" type="button">Save summary image</button>
+          <img id="board" alt="Summary of your answers" hidden>
+        </div>
+      </li>
+      <li>
+        <h3>Email it to me</h3>
+        <span class="small">The button opens an email with your answers already written in. Attach the image before sending.</span>
+        <div>
+          <div class="row">
+            <a class="btn" id="mail" href="#" target="_blank" rel="noopener" style="text-align:center;text-decoration:none">Open email with my answers</a>
+          </div>
+          <p class="small" style="margin:12px 0 4px">If no email opens, send it yourself to</p>
+          <div class="row"><span class="addr" id="addr">ssaksoo984@gmail.com</span><button class="chip" id="copy-addr" type="button">Copy address</button></div>
+          <div class="row"><button class="btn alt" id="copy" type="button">Copy my answers as text</button></div>
+        </div>
+      </li>
+    </ol>
     <p id="status" role="status"></p>
     <textarea id="out" readonly aria-label="Your answers" hidden></textarea>
   </section>
@@ -423,8 +455,11 @@ function summary(){
     lines.push(`■ ${si+1}. ${sec.title}`);
     sec.items.forEach(item => {
       let v = state[item.id];
-      if (item.type==="pick") v = v && v.choice ? v.choice + (v.note ? ` (why: ${v.note})` : "") : "";
-      else if (item.type==="gallery") v = (v||[]).filter(k=>LOGOS[k]).map(k=>LOGOS[k]).join(", ");
+      if (item.type==="pick") {
+        const o = v && item.options.find(x=>x.k===v.choice);
+        v = v && v.choice ? v.choice + (o ? ` (like ${o.l.map(k=>LOGOS[k]).join(", ")})` : "") + (v.note ? ` (why: ${v.note})` : "") : "";
+      }
+      else if (item.type==="gallery") v = GALLERY.map(c => { const ks = c.k.filter(k=>(v||[]).includes(k)); return ks.length ? `${c.t}: ${ks.map(k=>LOGOS[k]).join(", ")}` : ""; }).filter(Boolean).join("; ");
       else if (item.type==="colors") v = v && v.none ? "Black and white is enough" + (v.note ? ` (notes: ${v.note})` : "")
         : v && v.list && v.list.length
         ? v.list.map((h,i)=>`${i===0?"Main":"Support"}: ${colorName(h)} ${h.toUpperCase()}`).join(" / ") + (v.note ? ` (notes: ${v.note})` : "")
@@ -437,16 +472,143 @@ function summary(){
   return lines.join("\n");
 }
 
-document.getElementById("copy").addEventListener("click", async () => {
-  const out = document.getElementById("out"), status = document.getElementById("status");
-  const text = summary();
-  out.value = text; out.hidden = false;
-  let ok = false;
-  try { await navigator.clipboard.writeText(text); ok = true; } catch(e) {
-    try { out.focus(); out.select(); ok = document.execCommand("copy"); } catch(e2) { ok = false; }
+const EMAIL = "ssaksoo984@gmail.com";
+const statusEl = document.getElementById("status");
+const say = (t) => { statusEl.textContent = t; };
+const brandName = () => (state.name_en || state.name_ko || "").trim();
+
+async function copyText(text, fallbackEl){
+  try { await navigator.clipboard.writeText(text); return true; } catch(e) {
+    if (!fallbackEl) return false;
+    try { fallbackEl.hidden = false; fallbackEl.focus(); fallbackEl.select(); return document.execCommand("copy"); } catch(e2) { return false; }
   }
-  status.textContent = ok
-    ? "Copied. Paste it into an email or message and send it over."
-    : "Couldn't copy automatically. Select all the text below and copy it.";
+}
+document.getElementById("copy").addEventListener("click", async () => {
+  const out = document.getElementById("out");
+  out.value = summary(); out.hidden = false;
+  say(await copyText(out.value, out) ? "Answers copied. Paste them into an email to " + EMAIL + "."
+    : "Couldn't copy automatically. Select all the text below and copy it.");
+});
+document.getElementById("copy-addr").addEventListener("click", async () => {
+  say(await copyText(EMAIL) ? "Address copied." : "Couldn't copy. Press and hold the address to select it.");
+});
+const mail = document.getElementById("mail");
+const refreshMail = () => {
+  const subject = "Logo design brief" + (brandName() ? " – " + brandName() : "");
+  let body = summary() + "\n\n(Summary image attached)";
+  if (body.length > 6000) body = body.slice(0, 6000) + "\n…";
+  mail.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+};
+mail.addEventListener("click", () => { refreshMail(); say("If your email app didn't open, copy the address and your answers below and send them yourself."); });
+
+/* summary image */
+const imgCache = {};
+const loadImg = (k) => imgCache[k] || (imgCache[k] = new Promise(res => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = `samples/${k}.webp`; }));
+function wrap(ctx, text, maxW){
+  const out = []; String(text).split("\n").forEach(par => {
+    let line = ""; par.split(" ").forEach(w => {
+      const t = line ? line + " " + w : w;
+      if (ctx.measureText(t).width > maxW && line) { out.push(line); line = w; } else line = t;
+    }); out.push(line);
+  }); return out;
+}
+async function drawBoard(){
+  const W = 1200, P = 56, C = document.createElement("canvas");
+  C.width = W; C.height = 9000;
+  const x = C.getContext("2d");
+  const SANS = '"IBM Plex Sans","IBM Plex Sans KR",Arial,sans-serif', SERIF = 'Fraunces,Georgia,serif';
+  x.fillStyle = "#ffffff"; x.fillRect(0,0,W,C.height);
+  let y = P;
+  const text = (t, size, opt={}) => {
+    x.font = `${opt.weight||400} ${size}px ${opt.serif?SERIF:SANS}`; x.fillStyle = opt.color || "#1a1a1a";
+    const lines = wrap(x, t, opt.maxW || W-2*P); const lh = Math.round(size*1.45);
+    lines.forEach(l => { x.fillText(l, opt.x ?? P, y + size); y += lh; }); return lines.length*lh;
+  };
+  const heading = (t) => { y += 30; x.fillStyle = "#d9d7d0"; x.fillRect(P, y, W-2*P, 1); y += 22; text(t, 24, {weight:600, serif:true}); y += 6; };
+  const thumbs = async (keys, cols, labels) => {
+    const gap = 12, w = (W-2*P-gap*(cols-1))/cols, h = w/1.5;
+    for (let i=0;i<keys.length;i++){
+      const im = await loadImg(keys[i]); const cx = P + (i%cols)*(w+gap), cy = y + Math.floor(i/cols)*(h+(labels?34:gap));
+      if (im) { x.save(); x.beginPath(); x.roundRect ? x.roundRect(cx,cy,w,h,6) : x.rect(cx,cy,w,h); x.clip();
+        const s = Math.max(w/im.width, h/im.height); x.drawImage(im, cx+(w-im.width*s)/2, cy+(h-im.height*s)/2, im.width*s, im.height*s); x.restore(); }
+      if (labels){ x.font = `400 15px ${SANS}`; x.fillStyle = "#6b6a66"; x.fillText(labels[i], cx, cy+h+22); }
+    }
+    const rows = Math.ceil(keys.length/cols); y += rows*(h+(labels?34:gap));
+  };
+
+  text("Logo design brief", 22, {color:"#8f2a2b", weight:600});
+  y += 4; text(brandName() || "Brand name not given", 46, {weight:600, serif:true});
+  const sub = [state.industry, (state.mood||[]).join(", ")].filter(Boolean).join("  ·  ");
+  if (sub) text(sub, 20, {color:"#6b6a66"});
+  if (state.one_thing) text(`“${state.one_thing}”`, 22, {serif:true});
+
+  const likes = (state.likes||[]).filter(k=>LOGOS[k]);
+  heading(`Logos I like (${likes.length})`);
+  if (likes.length){
+    const labels = likes.map(k => { const c = GALLERY.find(g=>g.k.includes(k)); return c ? c.t : ""; });
+    await thumbs(likes, 5, labels);
+  } else text("None picked", 18, {color:"#6b6a66"});
+  if (state.likes_note) text("Why: " + state.likes_note, 18);
+
+  const pickItems = SECTIONS.flatMap(s=>s.items).filter(i=>i.type==="pick");
+  const answered = pickItems.filter(i => state[i.id] && state[i.id].choice);
+  heading("Style preferences");
+  if (state.script) text("Lead with: " + state.script, 19);
+  if (!answered.length && !state.script) text("No preferences picked", 18, {color:"#6b6a66"});
+  for (const it of answered){
+    const v = state[it.id], o = it.options.find(z=>z.k===v.choice);
+    y += 10; text(`${it.label}  →  ${v.choice}`, 20, {weight:600});
+    if (v.note) text("Why: " + v.note, 17, {color:"#6b6a66"});
+    if (o) { y += 4; await thumbs(o.l, 4); }
+  }
+
+  const pt = state.point || {};
+  heading("Accent colors");
+  if (pt.none) text("Black and white is enough", 19);
+  else if (pt.list && pt.list.length){
+    pt.list.forEach((h,i) => {
+      x.fillStyle = h; x.fillRect(P + i*300, y, 120, 80); x.strokeStyle = "#d9d7d0"; x.strokeRect(P + i*300 + .5, y + .5, 119, 79);
+      x.font = `600 18px ${SANS}`; x.fillStyle = "#1a1a1a"; x.fillText(`${i===0?"Main":"Support"}: ${colorName(h)}`, P + i*300, y + 108);
+      x.font = `400 16px ${SANS}`; x.fillStyle = "#6b6a66"; x.fillText(h.toUpperCase(), P + i*300, y + 132);
+    }); y += 150;
+  } else text("Not picked", 18, {color:"#6b6a66"});
+  if (pt.note) text("Notes: " + pt.note, 18);
+
+  heading("All answers");
+  let head = null;
+  summary().split("\n").slice(2).forEach(l => {
+    if (!l.trim() || /\(no answer\)$/.test(l)) return;
+    if (l.startsWith("■")) { head = l.replace("■ ",""); return; }
+    if (head) { y += 8; text(head, 19, {weight:600}); head = null; }
+    text(l, 16, {color:"#333"});
+  });
+  y += P;
+  const out = document.createElement("canvas"); out.width = W; out.height = Math.ceil(y);
+  out.getContext("2d").drawImage(C, 0, 0);
+  return out;
+}
+const board = document.getElementById("board");
+let boardTimer;
+const refreshBoard = () => { clearTimeout(boardTimer); boardTimer = setTimeout(async () => {
+  try { const c = await drawBoard(); board.src = c.toDataURL("image/png"); board.hidden = false; } catch(e) { board.hidden = true; }
+}, 400); };
+document.addEventListener("click", () => { refreshBoard(); refreshMail(); }, true);
+document.addEventListener("input", () => { refreshBoard(); refreshMail(); }, true);
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { refreshBoard(); refreshMail(); });
+
+const saveBtn = document.getElementById("save-img");
+let downloads = null;
+(async () => { try { downloads = window.claude?.use ? await window.claude.use("downloads") : null; } catch(e) {} })();
+saveBtn.addEventListener("click", async () => {
+  const c = await drawBoard();
+  const blob = await new Promise(r => c.toBlob(r, "image/png"));
+  const name = "logo-brief" + (brandName() ? "-" + brandName().toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"") : "") + ".png";
+  if (!downloads) { board.src = c.toDataURL("image/png"); board.hidden = false; say("Saving isn't available here. Press and hold (or right-click) the image to save it."); return; }
+  try { await downloads.save({filename: name, data: blob}); say("Image saved. Attach it to your email."); }
+  catch(e) {
+    if (e && e.code === "declined") say("Not saved.");
+    else if (e && e.code === "rate_limited") say("A save is already waiting for your confirmation.");
+    else say("Saving isn't available here. Press and hold (or right-click) the image to save it.");
+  }
 });
 </script>
