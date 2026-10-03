@@ -1,15 +1,15 @@
-<title>로고 디자인 사전 설문</title>
+<title>Logo Design Brief</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;600&family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* Layout: one narrow reading column; reference logos sit on dark "screen" panels like an opening card */
 :root{
   --paper:#f3f2ee; --surface:#ffffff; --ink:#1a1a1a; --muted:#6b6a66;
   --line:#d9d7d0; --accent:#8f2a2b; --accent-soft:#f3e4e2; --chip:#e9e7e1;
   --screen:#121214; --screen-2:#1c1c20; --screen-ink:#cfcdc6; --screen-dim:#86847e;
-  --display:"Gowun Batang",Georgia,serif;
-  --body:"IBM Plex Sans KR",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --display:"Fraunces",Georgia,serif;
+  --body:"IBM Plex Sans","IBM Plex Sans KR",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   --latin:"Archivo","Helvetica Neue",Arial,sans-serif;
 }
 @media (prefers-color-scheme: dark){
@@ -29,7 +29,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--body);
   font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
 .slate{height:26px;background:repeating-linear-gradient(-45deg,var(--ink) 0 16px,var(--paper) 16px 32px)}
 .wrap{max-width:760px;margin:0 auto;padding-inline:20px;padding-block:40px 80px}
-h1{font-family:var(--display);font-weight:700;font-size:clamp(30px,7vw,42px);line-height:1.2;margin:0 0 16px;letter-spacing:-.01em;text-wrap:balance}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(30px,7vw,42px);line-height:1.2;margin:0 0 16px;letter-spacing:-.01em;text-wrap:balance}
 .lede{color:var(--muted);margin:0 0 8px;max-width:34em}
 .small{font-size:14px;color:var(--muted)}
 .sec{margin-top:56px;padding-top:24px;border-top:1px solid var(--line)}
@@ -113,118 +113,118 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 <div class="slate" aria-hidden="true"></div>
 <main class="wrap">
-  <h1>로고 디자인<br>사전 설문</h1>
-  <p class="lede">좋아하시는 것과 피하고 싶은 것을 알려주시면 첫 시안부터 방향이 훨씬 가까워져요. 10분 정도 걸리고, 모르는 항목은 비워두셔도 괜찮아요.</p>
-  <p class="small">예시 로고는 여러 디자이너의 작업을 스타일별로 모은 참고 자료예요. 작성 중인 내용은 이 기기에 자동 저장돼요.</p>
+  <h1>Logo design<br>brief</h1>
+  <p class="lede">Tell me what you like and what you want to avoid, and the first drafts will land much closer to what you have in mind. It takes about 10 minutes. Skip anything you're unsure about.</p>
+  <p class="small">The example logos are work by various designers, grouped by style for reference. Your answers save automatically on this device.</p>
   <div id="form"></div>
   <section class="end">
-    <h2>다 작성하셨나요?</h2>
-    <p class="small" style="margin:0">버튼을 누르면 답변이 정리되어 복사돼요. 카카오톡이나 메일로 붙여넣어 보내주세요.</p>
-    <button class="btn" id="copy" type="button">답변 정리해서 복사하기</button>
+    <h2>All done?</h2>
+    <p class="small" style="margin:0">The button below copies all your answers as text. Paste them into an email or message and send them to me.</p>
+    <button class="btn" id="copy" type="button">Copy my answers</button>
     <p id="status" role="status"></p>
-    <textarea id="out" readonly aria-label="정리된 답변" hidden></textarea>
+    <textarea id="out" readonly aria-label="Your answers" hidden></textarea>
   </section>
-  <p class="credit">예시 로고는 Pinterest와 Behance에 공개된 각 디자이너·브랜드의 작업이며, 취향을 확인하기 위한 참고 자료로만 보여드려요.</p>
+  <p class="credit">The example logos belong to their designers and brands, as published on Pinterest and Behance. They are shown only as references for your taste.</p>
 </main>
 
 <script>
-const LOGOS = {"steven-brousseau":"Steven Brousseau Design","sb-shape":"SB 도형","wave":"물결 심볼","outside":"OUTSIDE","clae":"CLAE","gro":"gro","chevron":"지붕 심볼","r-arrow":"R 레터마크","actnova":"Actnova","village-square":"the village square","second-order":"Second Order","n-block":"N 레터마크","nifty":"Nifty","perimeter-watch":"Perimeter Watch","bow-mark":"리본 심볼","pracownia":"Pracownia Kursko","esmetal":"ESMETAL","p-mark":"P 레터마크","nano":"nano","zero":"ZERO","r-block":"R 블록","found-tapes":"The Found Tapes","2shea":"2Shea Creative","festival-musica":"Festival de Música","b-line":"B 라인","jam":"JAM!","on-and-on":"ON & ON","santo-tome":"Santo Tomé","octan-rings":"OCTAN 링","st-mono":"ST 모노그램","eight-line":"8 라인","k-mark":"K 레터마크","kiosk":"kiosk","palma-creativa":"Palma Creativa","hit-miss":"Hit&Miss","brownie":"Brownie Film Co.","m-line":"M 라인","palma-dans":"Palma Dans","beirut":"Beirut","princesa":"Princesa","eruditt":"Eruditt","bienoti":"Bienoti","octan-circle":"OCTAN 원형","bloom":"BLOOM","octan-pill":"OCTAN 캡슐","partners":"Partners in Believing","blanc":"Blanc Festival Madrid","bombom":"bombom","octan-grid":"OCTAN 그리드","kuschall":"küschall","voze":"voze","octan-badge":"OCTAN 뱃지","rehlat":"rehlat","tokyo":"東京","bienoti-badge":"Bienoti 뱃지","octan-topo":"OCTAN 등고선","castell":"Castell Sant Gregori","sinorre":"Sinorre","sonsa":"Sonsa","katana":"Katana","arclap":"arclap","stecura":"Stecura","trent":"TRENT","tapcart":"tapcart","brace":"brace","flow48":"Flow48","skyscanner":"Skyscanner","stratus":"Stratus","lumen":"LUMEN","qerra":"Qerra","mubi":"MUBI","grow":"grow","orbit":"orbit.ai","lome":"Lome"};
-const img = (k) => `<img src="samples/${k}.webp" alt="${LOGOS[k]} 로고" decoding="async">`;
+const LOGOS = {"steven-brousseau":"Steven Brousseau Design","sb-shape":"SB shape","wave":"Wave symbol","outside":"OUTSIDE","clae":"CLAE","gro":"gro","chevron":"Roof symbol","r-arrow":"R lettermark","actnova":"Actnova","village-square":"the village square","second-order":"Second Order","n-block":"N lettermark","nifty":"Nifty","perimeter-watch":"Perimeter Watch","bow-mark":"Bow symbol","pracownia":"Pracownia Kursko","esmetal":"ESMETAL","p-mark":"P lettermark","nano":"nano","zero":"ZERO","r-block":"R block","found-tapes":"The Found Tapes","2shea":"2Shea Creative","festival-musica":"Festival de Música","b-line":"B line","jam":"JAM!","on-and-on":"ON & ON","santo-tome":"Santo Tomé","octan-rings":"OCTAN rings","st-mono":"ST monogram","eight-line":"8 line","k-mark":"K lettermark","kiosk":"kiosk","palma-creativa":"Palma Creativa","hit-miss":"Hit&Miss","brownie":"Brownie Film Co.","m-line":"M line","palma-dans":"Palma Dans","beirut":"Beirut","princesa":"Princesa","eruditt":"Eruditt","bienoti":"Bienoti","octan-circle":"OCTAN circle","bloom":"BLOOM","octan-pill":"OCTAN pill","partners":"Partners in Believing","blanc":"Blanc Festival Madrid","bombom":"bombom","octan-grid":"OCTAN grid","kuschall":"küschall","voze":"voze","octan-badge":"OCTAN badge","rehlat":"rehlat","tokyo":"東京 (Tokyo)","bienoti-badge":"Bienoti badge","octan-topo":"OCTAN contour","castell":"Castell Sant Gregori","sinorre":"Sinorre","sonsa":"Sonsa","katana":"Katana","arclap":"arclap","stecura":"Stecura","trent":"TRENT","tapcart":"tapcart","brace":"brace","flow48":"Flow48","skyscanner":"Skyscanner","stratus":"Stratus","lumen":"LUMEN","qerra":"Qerra","mubi":"MUBI","grow":"grow","orbit":"orbit.ai","lome":"Lome"};
+const img = (k) => `<img src="samples/${k}.webp" alt="${LOGOS[k]} logo" decoding="async">`;
 const reel = (keys) => `<span class="reel">${keys.map(k=>`<span class="shot">${img(k)}</span>`).join("")}</span>`;
 
 const GALLERY = [
-  {t:"워드마크", d:"이름 글자만으로, 깔끔하게", k:["gro","nifty","nano","eruditt","bienoti","bombom","rehlat"]},
-  {t:"세리프·손글씨", d:"부리가 있거나 손으로 쓴 듯한 우아한 글자", k:["princesa","bloom","blanc","partners","beirut","castell"]},
-  {t:"타이포 실험", d:"글자를 쌓고, 자르고, 겹쳐서 만든 개성", k:["on-and-on","zero","kiosk","festival-musica","octan-grid","jam","tokyo","octan-rings"]},
-  {t:"레터마크·모노그램", d:"이니셜 한두 글자를 상징으로", k:["r-arrow","r-block","n-block","p-mark","k-mark","st-mono","hit-miss","2shea","santo-tome","second-order"]},
-  {t:"심볼 + 글자", d:"그림 하나와 이름을 함께", k:["clae","perimeter-watch","esmetal","steven-brousseau","village-square","palma-creativa","palma-dans","brownie","kuschall","voze","pracownia"]},
-  {t:"심볼 단독", d:"글자 없이 도형 하나로", k:["sb-shape","wave","chevron","bow-mark"]},
-  {t:"라인", d:"가는 선을 반복하거나 이어서", k:["b-line","eight-line","m-line","octan-topo"]},
-  {t:"엠블럼·뱃지", d:"원이나 사각형 틀 안에 담은 형태", k:["outside","actnova","found-tapes","bienoti-badge","octan-circle","octan-pill","octan-badge"]},
-  {t:"그라데이션·디지털", d:"빛과 색이 흐르는 배경 위의 로고", k:["sinorre","sonsa","katana","arclap","stecura","trent","tapcart","brace","flow48","skyscanner","stratus","lumen","qerra","mubi","grow","orbit","lome"]}
+  {t:"Wordmarks", d:"The name alone, set cleanly", k:["gro","nifty","nano","eruditt","bienoti","bombom","rehlat"]},
+  {t:"Serif & script", d:"Elegant letters with serifs or a hand-drawn feel", k:["princesa","bloom","blanc","partners","beirut","castell"]},
+  {t:"Experimental type", d:"Letters stacked, cut or overlapped", k:["on-and-on","zero","kiosk","festival-musica","octan-grid","jam","tokyo","octan-rings"]},
+  {t:"Lettermarks & monograms", d:"One or two initials as the symbol", k:["r-arrow","r-block","n-block","p-mark","k-mark","st-mono","hit-miss","2shea","santo-tome","second-order"]},
+  {t:"Symbol + name", d:"An icon paired with the name", k:["clae","perimeter-watch","esmetal","steven-brousseau","village-square","palma-creativa","palma-dans","brownie","kuschall","voze","pracownia"]},
+  {t:"Symbol only", d:"A single shape, no letters", k:["sb-shape","wave","chevron","bow-mark"]},
+  {t:"Line work", d:"Thin lines, repeated or continuous", k:["b-line","eight-line","m-line","octan-topo"]},
+  {t:"Emblems & badges", d:"Contained inside a circle or frame", k:["outside","actnova","found-tapes","bienoti-badge","octan-circle","octan-pill","octan-badge"]},
+  {t:"Gradient & digital", d:"Logos on flowing light and color", k:["sinorre","sonsa","katana","arclap","stecura","trent","tapcart","brace","flow48","skyscanner","stratus","lumen","qerra","mubi","grow","orbit","lome"]}
 ];
 
 const COLORS = [
-  {n:"레드",h:"#C8102E"},{n:"버밀리언",h:"#E2492F"},{n:"오렌지",h:"#F07F1A"},{n:"앰버",h:"#E8A33D"},
-  {n:"골드",h:"#B8935A"},{n:"라임",h:"#C6EE68"},{n:"올리브",h:"#6B7A3A"},{n:"포레스트",h:"#1F5E45"},
-  {n:"틸",h:"#1F7A7A"},{n:"스카이",h:"#4AA8E0"},{n:"코발트",h:"#2350C8"},{n:"네이비",h:"#1E2E4F"},
-  {n:"바이올렛",h:"#6A4FA3"},{n:"로즈",h:"#D9567A"},{n:"버건디",h:"#6E1E2B"},{n:"크림",h:"#EDE3CF"},
-  {n:"웜 그레이",h:"#8C877D"},{n:"차콜",h:"#2B2B2E"}
+  {n:"Red",h:"#C8102E"},{n:"Vermilion",h:"#E2492F"},{n:"Orange",h:"#F07F1A"},{n:"Amber",h:"#E8A33D"},
+  {n:"Gold",h:"#B8935A"},{n:"Lime",h:"#C6EE68"},{n:"Olive",h:"#6B7A3A"},{n:"Forest",h:"#1F5E45"},
+  {n:"Teal",h:"#1F7A7A"},{n:"Sky",h:"#4AA8E0"},{n:"Cobalt",h:"#2350C8"},{n:"Navy",h:"#1E2E4F"},
+  {n:"Violet",h:"#6A4FA3"},{n:"Rose",h:"#D9567A"},{n:"Burgundy",h:"#6E1E2B"},{n:"Cream",h:"#EDE3CF"},
+  {n:"Warm gray",h:"#8C877D"},{n:"Charcoal",h:"#2B2B2E"}
 ];
 
 const SECTIONS = [
-  {title:"기본 정보", items:[
-    {id:"name_ko", type:"text", label:"브랜드명 (국문)", ph:"예: 여울"},
-    {id:"name_en", type:"text", label:"브랜드명 (영문 표기)", hint:"철자와 띄어쓰기, 대소문자까지 확정된 표기로 적어주세요", ph:"예: YEOUL"},
-    {id:"name_short", type:"text", label:"줄여서 부르는 이름이나 이니셜이 있나요 (선택)", ph:"예: YL"},
-    {id:"meaning", type:"textarea", label:"브랜드명에 담긴 뜻이나 이야기가 있다면 알려주세요"},
-    {id:"status", type:"single", label:"지금 어떤 상황인가요?", options:["처음 만드는 로고예요","기존 로고를 새로 바꿔요","브랜드명이 아직 확정 전이에요"]},
-    {id:"keep_old", type:"textarea", label:"기존 로고가 있다면, 남기고 싶은 부분과 바꾸고 싶은 이유", hint:"처음 만드시는 경우 비워두세요"},
-    {id:"contact", type:"text", label:"담당자 성함과 연락처"}
+  {title:"The basics", items:[
+    {id:"name_en", type:"text", label:"Brand name", hint:"Exactly as it should appear, including spacing and capitals", ph:"e.g. YEOUL"},
+    {id:"name_ko", type:"text", label:"Name in another language or script (optional)", ph:"e.g. 여울"},
+    {id:"name_short", type:"text", label:"Any short name or initials people use? (optional)", ph:"e.g. YL"},
+    {id:"meaning", type:"textarea", label:"Is there a meaning or story behind the name?"},
+    {id:"status", type:"single", label:"Where are you right now?", options:["This is our first logo","We're replacing an existing logo","The name isn't final yet"]},
+    {id:"keep_old", type:"textarea", label:"If you have a logo now, what should stay and why is it changing?", hint:"Leave blank if this is your first logo"},
+    {id:"contact", type:"text", label:"Your name and contact details"}
   ]},
-  {title:"브랜드 이야기", items:[
-    {id:"industry", type:"single", label:"업종", options:["IT·테크","식음료·카페","패션·뷰티","교육","의료·헬스케어","금융·컨설팅","제조·유통","문화·예술·콘텐츠","공간·인테리어","공공·비영리","기타"]},
-    {id:"what", type:"textarea", label:"무엇을 하는 브랜드인지 한두 문장으로 알려주세요", ph:"예: 직장인을 위한 30분 필라테스 스튜디오"},
-    {id:"audience", type:"textarea", label:"주요 고객은 누구인가요?", hint:"나이, 하는 일, 어디서 브랜드를 만나는지 등", ph:"예: 30대 직장인, 주로 인스타그램으로 알게 됨"},
-    {id:"competitors", type:"textarea", label:"비슷한 일을 하는 경쟁 브랜드가 있다면 적어주세요", hint:"그 브랜드와 겹쳐 보이지 않게 작업할게요"},
-    {id:"difference", type:"textarea", label:"경쟁 브랜드와 다른 점을 한두 문장으로 말한다면"}
+  {title:"About the brand", items:[
+    {id:"industry", type:"single", label:"Industry", options:["Tech & software","Food & beverage","Fashion & beauty","Education","Health & wellness","Finance & consulting","Retail & manufacturing","Arts, culture & media","Hospitality & spaces","Nonprofit & public","Other"]},
+    {id:"what", type:"textarea", label:"What does the brand do, in a sentence or two?", ph:"e.g. 30-minute pilates classes for people who work office hours"},
+    {id:"audience", type:"textarea", label:"Who are your main customers?", hint:"Age, what they do, and where they usually find you", ph:"e.g. Professionals in their 30s who find us on Instagram"},
+    {id:"competitors", type:"textarea", label:"Which brands do similar work?", hint:"So the new logo doesn't end up looking like theirs"},
+    {id:"difference", type:"textarea", label:"How are you different from them, in a sentence or two?"}
   ]},
-  {title:"원하는 첫인상", items:[
-    {id:"mood", type:"multi", max:3, label:"로고를 본 사람이 이렇게 느꼈으면 좋겠어요", hint:"최대 3개까지 골라주세요", options:["신뢰감 있는","친근한","고급스러운","세련된","젊은","대담한","차분한","따뜻한","유쾌한","전문적인","혁신적인","자연스러운"]},
-    {id:"one_thing", type:"text", label:"로고가 딱 한 가지만 전할 수 있다면, 무엇이었으면 하나요?", ph:"예: 믿고 맡길 수 있다"},
-    {id:"motif", type:"multi", label:"로고에 담고 싶은 것", options:["브랜드명 첫 글자","브랜드명의 뜻","업종이 떠오르는 그림","추상적인 도형","글자만으로 충분해요"]},
-    {id:"motif_note", type:"text", label:"꼭 넣고 싶은 상징이나 이야기가 있다면 (선택)"}
+  {title:"First impression", items:[
+    {id:"mood", type:"multi", max:3, label:"When people see the logo, they should feel it's…", hint:"Pick up to 3", options:["Trustworthy","Friendly","Premium","Refined","Youthful","Bold","Calm","Warm","Playful","Professional","Innovative","Natural"]},
+    {id:"one_thing", type:"text", label:"If the logo could say only one thing, what should it be?", ph:"e.g. You can rely on us"},
+    {id:"motif", type:"multi", label:"What could the logo be built from?", options:["The first letter of the name","The meaning of the name","Something from our industry","An abstract shape","Letters alone are enough"]},
+    {id:"motif_note", type:"text", label:"A symbol or story you'd like included (optional)"}
   ]},
-  {title:"끌리는 로고 고르기", intro:"여러 스타일의 로고를 종류별로 모았어요. 업종은 신경 쓰지 마시고, 보기에 끌리는 걸 자유롭게 눌러주세요. 5~10개 정도면 충분해요.", items:[
-    {id:"likes", type:"gallery", label:"마음에 드는 로고"},
-    {id:"likes_note", type:"text", label:"고른 로고에서 특히 좋았던 점 (선택)", ph:"예: 단순한데 한 번 보면 기억에 남아요"}
+  {title:"Logos you like", intro:"These logos are grouped by style. Ignore what industry they come from and tap the ones that appeal to you. Five to ten is plenty.", items:[
+    {id:"likes", type:"gallery", label:"Logos you like"},
+    {id:"likes_note", type:"text", label:"What did you like about them? (optional)", ph:"e.g. Simple, but they stick in your head"}
   ]},
-  {title:"취향 고르기", intro:"각 묶음을 하나의 느낌으로 보시고 더 끌리는 쪽을 골라주세요. 이유를 한 줄 적어주시면 더 정확해져요.", items:[
-    {id:"script", type:"single", label:"로고의 중심이 될 글자", options:["영문 중심","국문 중심","국문과 영문 함께","심볼만으로도 쓰이게","잘 모르겠어요"]},
-    {id:"form", type:"pick", label:"어떤 형태가 끌리세요?", options:[
-      {k:"워드마크", d:"글자만", l:["gro","nifty","eruditt","bombom"]},
-      {k:"심볼 + 글자", d:"그림과 이름", l:["clae","perimeter-watch","voze","kuschall"]},
-      {k:"레터마크·모노그램", d:"이니셜", l:["r-arrow","st-mono","hit-miss","k-mark"]},
-      {k:"심볼 단독", d:"도형 하나", l:["sb-shape","wave","chevron","bow-mark"]},
-      {k:"엠블럼·뱃지", d:"틀 안에 담은", l:["outside","actnova","found-tapes","bienoti-badge"]}]},
-    {id:"type", type:"pick", label:"글자 느낌", options:[
-      {k:"산세리프", d:"깔끔한 글자", l:["nifty","nano","eruditt","bienoti"]},
-      {k:"세리프", d:"부리가 있는 글자", l:["princesa","bloom","blanc","partners"]},
-      {k:"손글씨·개성", d:"직접 그린 듯한 글자", l:["beirut","castell","jam","rehlat"]}]},
-    {id:"weight", type:"pick", label:"선의 무게", options:[
-      {k:"굵고 단단하게", l:["gro","esmetal","zero","actnova"]},
-      {k:"가늘고 섬세하게", l:["b-line","m-line","octan-topo","octan-rings"]}]},
-    {id:"detail", type:"pick", label:"개성", options:[
-      {k:"단순하게", d:"오래 써도 질리지 않게", l:["p-mark","k-mark","n-block","nano"]},
-      {k:"실험적으로", d:"한눈에 튀게", l:["on-and-on","kiosk","octan-grid","tokyo"]}]},
-    {id:"color", type:"pick", label:"색 쓰는 방식", options:[
-      {k:"흑백", d:"색 없이", l:["st-mono","eruditt","bloom","eight-line"]},
-      {k:"강한 단색", d:"한 가지 색을 상징처럼", l:["nifty","esmetal","chevron","festival-musica"]},
-      {k:"그라데이션", d:"여러 색이 흐르는", l:["katana","stratus","lumen","qerra"]}]},
-    {id:"point", type:"colors", max:2, label:"포인트 컬러를 골라주세요", hint:"최대 2개까지. 첫 번째는 메인, 두 번째는 보조 색으로 볼게요."}
+  {title:"Style preferences", intro:"Look at each group as one overall feel and pick the one that draws you in. A short reason helps a lot.", items:[
+    {id:"script", type:"single", label:"Which name should the logo lead with?", options:["English name","Name in another language","Both together","The symbol should work alone","Not sure"]},
+    {id:"form", type:"pick", label:"Which kind of logo appeals to you?", options:[
+      {k:"Wordmark", d:"Letters only", l:["gro","nifty","eruditt","bombom"]},
+      {k:"Symbol + name", d:"Icon and name", l:["clae","perimeter-watch","voze","kuschall"]},
+      {k:"Lettermark", d:"Initials", l:["r-arrow","st-mono","hit-miss","k-mark"]},
+      {k:"Symbol only", d:"One shape", l:["sb-shape","wave","chevron","bow-mark"]},
+      {k:"Emblem", d:"Inside a frame", l:["outside","actnova","found-tapes","bienoti-badge"]}]},
+    {id:"type", type:"pick", label:"Lettering", options:[
+      {k:"Sans serif", d:"Clean letters", l:["nifty","nano","eruditt","bienoti"]},
+      {k:"Serif", d:"Letters with serifs", l:["princesa","bloom","blanc","partners"]},
+      {k:"Script & custom", d:"Hand-drawn feel", l:["beirut","castell","jam","rehlat"]}]},
+    {id:"weight", type:"pick", label:"Line weight", options:[
+      {k:"Heavy and solid", l:["gro","esmetal","zero","actnova"]},
+      {k:"Light and delicate", l:["b-line","m-line","octan-topo","octan-rings"]}]},
+    {id:"detail", type:"pick", label:"Personality", options:[
+      {k:"Simple", d:"Timeless, won't get old", l:["p-mark","k-mark","n-block","nano"]},
+      {k:"Experimental", d:"Stands out at a glance", l:["on-and-on","kiosk","octan-grid","tokyo"]}]},
+    {id:"color", type:"pick", label:"Use of color", options:[
+      {k:"Black & white", d:"No color", l:["st-mono","eruditt","bloom","eight-line"]},
+      {k:"One strong color", d:"A signature color", l:["nifty","esmetal","chevron","festival-musica"]},
+      {k:"Gradient", d:"Several colors blending", l:["katana","stratus","lumen","qerra"]}]},
+    {id:"point", type:"colors", max:2, label:"Pick your accent colors", hint:"Up to 2. The first is the main color, the second is supporting."}
   ]},
-  {title:"어디에 쓰이나요", intro:"작게 찍히는 곳이 많을수록 단순하고 잘 읽히는 형태가 필요해요.", items:[
-    {id:"usage", type:"multi", label:"로고가 쓰일 곳", options:["간판·매장","웹사이트","앱 아이콘","SNS 프로필","명함·서류","제품·패키지","유니폼·굿즈","인쇄 광고·전단","영상"]},
-    {id:"motion", type:"single", label:"영상용 움직이는 로고도 필요하신가요?", options:["네, 필요해요","나중에 필요할 수도 있어요","아니요"]},
-    {id:"deliver", type:"multi", label:"받고 싶은 결과물", hint:"모르시면 비워두세요. 기본 구성으로 제안드릴게요.", options:["원본 파일 (AI·SVG·PNG)","가로형·세로형 조합","국문·영문 조합","심볼 단독 버전","흑백·반전 버전","간단한 사용 가이드","명함·서식 적용","SNS 프로필 이미지"]},
-    {id:"trademark", type:"single", label:"상표 등록을 하실 계획인가요?", hint:"등록하실 예정이면 비슷한 상표가 있는지 미리 살펴보며 작업해요", options:["네, 할 거예요","고민 중이에요","아니요"]}
+  {title:"Where it will be used", intro:"The more places the logo appears small, the simpler and more legible it needs to be.", items:[
+    {id:"usage", type:"multi", label:"Where will the logo appear?", options:["Signage & storefront","Website","App icon","Social media profile","Business cards & documents","Products & packaging","Uniforms & merchandise","Print ads & flyers","Video"]},
+    {id:"motion", type:"single", label:"Do you need an animated version for video?", options:["Yes","Maybe later","No"]},
+    {id:"deliver", type:"multi", label:"What would you like to receive?", hint:"Leave blank if unsure and I'll suggest a standard set.", options:["Source files (AI, SVG, PNG)","Horizontal & stacked layouts","Versions in both languages","Symbol on its own","Black & reversed versions","Short usage guide","Business card & stationery","Social media profile images"]},
+    {id:"trademark", type:"single", label:"Do you plan to register a trademark?", hint:"If so, I'll check for similar marks while designing", options:["Yes","Considering it","No"]}
   ]},
-  {title:"마지막으로", items:[
-    {id:"avoid_tags", type:"multi", label:"피하고 싶은 것", options:["업종에서 너무 흔한 아이콘","유행을 많이 타는 느낌","너무 화려한 장식","가볍거나 장난스러운 느낌","너무 차갑고 딱딱한 느낌","경쟁 브랜드와 비슷해 보이는 것"]},
-    {id:"avoid", type:"textarea", label:"그 밖에 피하고 싶은 느낌이나 색"},
-    {id:"refs", type:"textarea", label:"그 밖에 참고하고 싶은 로고나 이미지 링크", hint:"인스타그램, 핀터레스트, 비핸스 링크 모두 좋아요"},
-    {id:"decider", type:"text", label:"시안을 보고 최종 결정하실 분", hint:"여러 분이 함께 보시면 모두 적어주세요", ph:"예: 대표님, 공동대표 1명"},
-    {id:"deadline", type:"text", label:"희망하시는 완료 시점", hint:"오픈일이나 출시일처럼 꼭 맞춰야 하는 날짜가 있다면 함께 적어주세요", ph:"예: 12월 초, 매장 오픈 2주 전"}
+  {title:"Last few things", items:[
+    {id:"avoid_tags", type:"multi", label:"Things to avoid", options:["Icons that are overused in our industry","Anything too trendy","Too much decoration","Anything light or jokey","Anything cold or corporate","Looking like a competitor"]},
+    {id:"avoid", type:"textarea", label:"Any other feelings or colors to avoid?"},
+    {id:"refs", type:"textarea", label:"Other logos or images you'd like me to see", hint:"Instagram, Pinterest and Behance links all work"},
+    {id:"decider", type:"text", label:"Who will make the final decision on designs?", hint:"If several people will review, list them all", ph:"e.g. The founder and one co-founder"},
+    {id:"deadline", type:"text", label:"When do you need it finished?", hint:"Include any fixed date, such as an opening or launch", ph:"e.g. Early December, two weeks before opening"}
   ]}
 ];
 
-const KEY = "logo-survey-v2";
+const KEY = "logo-survey-en-v1";
 let state = {};
 try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e) { state = {}; }
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} };
 const el = (tag, attrs={}, html="") => { const n=document.createElement(tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (html) n.innerHTML=html; return n; };
 const HEX = /^#[0-9a-f]{6}$/i;
-const colorName = (h) => (COLORS.find(c=>c.h.toLowerCase()===h.toLowerCase())||{n:"직접 고른 색"}).n;
+const colorName = (h) => (COLORS.find(c=>c.h.toLowerCase()===h.toLowerCase())||{n:"Custom color"}).n;
 
 function chipGroup(item, opts, multi, onLimit){
   const wrap = el("div",{class:"chips"});
@@ -253,7 +253,7 @@ function galleryItem(item){
   if (!Array.isArray(state[item.id])) state[item.id] = [];
   const box = el("div",{class:"q",role:"group","aria-label":item.label});
   const tally = el("div",{class:"tally","aria-live":"polite"},"<span></span>");
-  const syncTally = () => { const n = state[item.id].length; tally.firstChild.textContent = `${n}개 골랐어요`; tally.hidden = n===0; };
+  const syncTally = () => { const n = state[item.id].length; tally.firstChild.textContent = `${n} selected`; tally.hidden = n===0; };
   GALLERY.forEach(cat => {
     const c = el("div",{class:"cat"});
     c.appendChild(el("h3",{},`${cat.t}<small>${cat.d}</small>`));
@@ -288,7 +288,7 @@ function colorItem(item){
     btns.forEach(b => {
       const i = st.list.findIndex(h=>h.toLowerCase()===b.dataset.h.toLowerCase());
       b.setAttribute("aria-pressed", i>=0);
-      b.querySelector(".ord").textContent = i===0 ? "메인" : i===1 ? "보조" : "";
+      b.querySelector(".ord").textContent = i===0 ? "Main" : i===1 ? "Support" : "";
     });
     none.setAttribute("aria-pressed", !!st.none);
     previews.forEach(fn=>fn());
@@ -296,7 +296,7 @@ function colorItem(item){
   const toggle = (h) => {
     const i = st.list.findIndex(x=>x.toLowerCase()===h.toLowerCase());
     if (i>=0) st.list.splice(i,1);
-    else { if (st.list.length>=item.max){ limitMsg(msg, `${item.max}개까지 고를 수 있어요. 하나를 해제하고 다시 골라주세요.`); return; } st.list.push(h); st.none = false; }
+    else { if (st.list.length>=item.max){ limitMsg(msg, `You can pick up to ${item.max}. Deselect one to choose another.`); return; } st.list.push(h); st.none = false; }
     save(); syncAll();
   };
   COLORS.forEach(c => {
@@ -306,14 +306,14 @@ function colorItem(item){
     btns.push(b); grid.appendChild(b);
   });
   q.appendChild(grid);
-  const none = el("button",{type:"button",class:"chip",id:"point-none"}); none.textContent = "포인트 컬러 없이 흑백으로 충분해요";
+  const none = el("button",{type:"button",class:"chip",id:"point-none"}); none.textContent = "No accent color, black and white is enough";
   none.addEventListener("click", () => { st.none = !st.none; if (st.none) st.list = []; save(); syncAll(); });
   const noneRow = el("div",{class:"chips"}); noneRow.appendChild(none); q.appendChild(noneRow);
 
   const custom = el("div",{class:"custom"});
-  const picker = el("input",{type:"color",id:"point-picker","aria-label":"직접 색 고르기",value:"#3a6ea5"});
-  const hex = el("input",{type:"text",id:"point-hex","aria-label":"색상 코드",value:"#3A6EA5",maxlength:"7"});
-  const add = el("button",{type:"button",class:"chip"}); add.textContent="이 색 추가";
+  const picker = el("input",{type:"color",id:"point-picker","aria-label":"Pick a custom color",value:"#3a6ea5"});
+  const hex = el("input",{type:"text",id:"point-hex","aria-label":"Hex code",value:"#3A6EA5",maxlength:"7"});
+  const add = el("button",{type:"button",class:"chip"}); add.textContent="Add this color";
   picker.addEventListener("input", () => { hex.value = picker.value.toUpperCase(); });
   hex.addEventListener("input", () => { if (HEX.test(hex.value)) picker.value = hex.value.toLowerCase(); });
   add.addEventListener("click", () => {
@@ -321,12 +321,12 @@ function colorItem(item){
     if (st.list.some(x=>x.toLowerCase()===h.toLowerCase())) return;
     toggle(h);
   });
-  custom.appendChild(el("span",{class:"small"},"원하는 색이 없다면"));
+  custom.appendChild(el("span",{class:"small"},"Not seeing your color?"));
   custom.append(picker, hex, add);
   q.appendChild(custom);
   q.appendChild(msg);
 
-  const pv = el("div",{class:"preview","aria-label":"선택한 색 미리보기"});
+  const pv = el("div",{class:"preview","aria-label":"Preview of your colors"});
   const mk = (cls) => { const p = el("div",{class:"pv "+cls}); p.innerHTML = `<span class="nm"></span><span class="rule"></span>`; pv.appendChild(p); return p; };
   const dark = mk("dark"), light = mk("light");
   previews.push(() => {
@@ -341,16 +341,16 @@ function colorItem(item){
     q.querySelectorAll(".chip.picked").forEach(n=>n.remove());
     st.list.filter(h=>!COLORS.some(c=>c.h.toLowerCase()===h.toLowerCase())).forEach(h => {
       const c = el("button",{type:"button",class:"chip picked","aria-pressed":"true"},
-        `<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${h};vertical-align:-1px;margin-right:6px"></span>${h} 해제`);
+        `<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${h};vertical-align:-1px;margin-right:6px"></span>Remove ${h}`);
       c.addEventListener("click", () => toggle(h));
       custom.appendChild(c);
     });
   });
   q.appendChild(pv);
-  q.appendChild(el("span",{class:"hint",style:"margin-top:8px"},"위 미리보기는 색 조합만 보여드리는 거예요. 실제 로고 모양과는 달라요."));
+  q.appendChild(el("span",{class:"hint",style:"margin-top:8px"},"This preview only shows the color combination, not the logo design itself."));
 
-  const note = el("input",{type:"text",class:"note",id:"point-note","aria-label":"포인트 컬러 메모"});
-  note.placeholder="색에 대한 메모가 있다면 (선택) 예: 너무 쨍하지 않은 빨강"; note.value = st.note || "";
+  const note = el("input",{type:"text",class:"note",id:"point-note","aria-label":"Color notes"});
+  note.placeholder="Any notes on color? (optional) e.g. a red that isn't too bright"; note.value = st.note || "";
   note.addEventListener("input", () => { st.note = note.value; save(); });
   q.appendChild(note);
   syncAll();
@@ -377,7 +377,7 @@ SECTIONS.forEach((sec, si) => {
       q.appendChild(el("span",{class:"ql"}, item.label));
       if (item.hint) q.appendChild(el("span",{class:"hint"}, item.hint));
       const msg = el("div",{class:"limit","aria-live":"polite"});
-      q.appendChild(chipGroup(item, item.options, item.type==="multi", () => limitMsg(msg, `${item.max}개까지 고를 수 있어요. 하나를 해제하고 다시 골라주세요.`)));
+      q.appendChild(chipGroup(item, item.options, item.type==="multi", () => limitMsg(msg, `You can pick up to ${item.max}. Deselect one to choose another.`)));
       if (item.max) q.appendChild(msg);
       s.appendChild(q);
     } else if (item.type==="gallery"){
@@ -394,21 +394,21 @@ SECTIONS.forEach((sec, si) => {
       const all = [];
       const syncAll = () => all.forEach(b => b.setAttribute("aria-pressed", st.choice===b.dataset.k));
       item.options.forEach(o => {
-        const b = el("button",{type:"button",class:"pick","data-k":o.k,"aria-label":`${o.k}. 예: ${o.l.map(k=>LOGOS[k]).join(", ")}`},
+        const b = el("button",{type:"button",class:"pick","data-k":o.k,"aria-label":`${o.k}. Examples: ${o.l.map(k=>LOGOS[k]).join(", ")}`},
           `${reel(o.l)}<span class="cap">${o.k}${o.d?`<small>${o.d}</small>`:""}</span>`);
         b.addEventListener("click", () => { st.choice = st.choice===o.k ? "" : o.k; save(); syncAll(); });
         all.push(b); grid.appendChild(b);
       });
       q.appendChild(grid);
       const extra = el("div",{class:"chips"});
-      [item.options.length>2 ? "다 좋아요" : "둘 다 좋아요","잘 모르겠어요"].forEach(t => {
+      [item.options.length>2 ? "I like them all" : "I like both","Not sure"].forEach(t => {
         const b = el("button",{type:"button",class:"chip","data-k":t}); b.textContent=t;
         b.addEventListener("click", () => { st.choice = st.choice===t ? "" : t; save(); syncAll(); });
         all.push(b); extra.appendChild(b);
       });
       q.appendChild(extra);
-      const note = el("input",{type:"text",class:"note",id:"note-"+item.id,"aria-label":item.label+" 이유"});
-      note.placeholder="이유가 있다면 한 줄로 (선택)"; note.value=st.note||"";
+      const note = el("input",{type:"text",class:"note",id:"note-"+item.id,"aria-label":item.label+" reason"});
+      note.placeholder="Why? One line is enough (optional)"; note.value=st.note||"";
       note.addEventListener("input", () => { st.note=note.value; save(); });
       q.appendChild(note);
       syncAll(); s.appendChild(q);
@@ -418,19 +418,19 @@ SECTIONS.forEach((sec, si) => {
 });
 
 function summary(){
-  const lines = ["[로고 디자인 사전 설문 답변]",""];
+  const lines = ["[Logo design brief answers]",""];
   SECTIONS.forEach((sec, si) => {
     lines.push(`■ ${si+1}. ${sec.title}`);
     sec.items.forEach(item => {
       let v = state[item.id];
-      if (item.type==="pick") v = v && v.choice ? v.choice + (v.note ? ` (이유: ${v.note})` : "") : "";
+      if (item.type==="pick") v = v && v.choice ? v.choice + (v.note ? ` (why: ${v.note})` : "") : "";
       else if (item.type==="gallery") v = (v||[]).filter(k=>LOGOS[k]).map(k=>LOGOS[k]).join(", ");
-      else if (item.type==="colors") v = v && v.none ? "흑백으로 충분해요" + (v.note ? ` (메모: ${v.note})` : "")
+      else if (item.type==="colors") v = v && v.none ? "Black and white is enough" + (v.note ? ` (notes: ${v.note})` : "")
         : v && v.list && v.list.length
-        ? v.list.map((h,i)=>`${i===0?"메인":"보조"} ${colorName(h)} ${h.toUpperCase()}`).join(" / ") + (v.note ? ` (메모: ${v.note})` : "")
-        : (v && v.note ? `(메모: ${v.note})` : "");
+        ? v.list.map((h,i)=>`${i===0?"Main":"Support"}: ${colorName(h)} ${h.toUpperCase()}`).join(" / ") + (v.note ? ` (notes: ${v.note})` : "")
+        : (v && v.note ? `(notes: ${v.note})` : "");
       else if (Array.isArray(v)) v = v.join(", ");
-      lines.push(`- ${item.label}: ${(v||"").toString().trim() || "(미작성)"}`);
+      lines.push(`- ${item.label}: ${(v||"").toString().trim() || "(no answer)"}`);
     });
     lines.push("");
   });
@@ -446,7 +446,7 @@ document.getElementById("copy").addEventListener("click", async () => {
     try { out.focus(); out.select(); ok = document.execCommand("copy"); } catch(e2) { ok = false; }
   }
   status.textContent = ok
-    ? "복사됐어요. 카카오톡이나 메일에 붙여넣어 보내주세요."
-    : "자동 복사가 안 됐어요. 아래 내용을 길게 눌러 전체 선택 후 복사해 주세요.";
+    ? "Copied. Paste it into an email or message and send it over."
+    : "Couldn't copy automatically. Select all the text below and copy it.";
 });
 </script>
