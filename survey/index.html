@@ -1,0 +1,505 @@
+<title>로고 디자인 사전 설문</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: one narrow reading column; reference logos sit on dark "screen" panels like an opening card */
+:root{
+  --paper:#f3f2ee; --surface:#ffffff; --ink:#1a1a1a; --muted:#6b6a66;
+  --line:#d9d7d0; --accent:#8f2a2b; --accent-soft:#f3e4e2; --chip:#e9e7e1;
+  --screen:#121214; --screen-2:#1c1c20; --screen-ink:#cfcdc6; --screen-dim:#86847e;
+  --display:"Gowun Batang",Georgia,serif;
+  --body:"IBM Plex Sans KR",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --latin:"Archivo","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1b1c1e; --surface:#26272a; --ink:#ecebe7; --muted:#a3a19b;
+    --line:#3a3b3f; --accent:#e07a76; --accent-soft:#3a2626; --chip:#303135;
+    --screen:#0c0c0e; --screen-2:#161619; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1b1c1e; --surface:#26272a; --ink:#ecebe7; --muted:#a3a19b;
+  --line:#3a3b3f; --accent:#e07a76; --accent-soft:#3a2626; --chip:#303135;
+  --screen:#0c0c0e; --screen-2:#161619; color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.slate{height:26px;background:repeating-linear-gradient(-45deg,var(--ink) 0 16px,var(--paper) 16px 32px)}
+.wrap{max-width:760px;margin:0 auto;padding-inline:20px;padding-block:40px 80px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(30px,7vw,42px);line-height:1.2;margin:0 0 16px;letter-spacing:-.01em;text-wrap:balance}
+.lede{color:var(--muted);margin:0 0 8px;max-width:34em}
+.small{font-size:14px;color:var(--muted)}
+.sec{margin-top:56px;padding-top:24px;border-top:1px solid var(--line)}
+.sec h2{font-family:var(--display);font-size:24px;margin:0 0 6px;display:flex;gap:12px;align-items:baseline;text-wrap:balance}
+.sec h2 .n{font-family:var(--latin);font-weight:400;font-size:15px;color:var(--accent)}
+.sec .intro{color:var(--muted);margin:0 0 8px;max-width:38em}
+.q{display:block;margin-top:32px}
+.ql{display:block;font-weight:600;margin:0 0 4px}
+.hint{display:block;font-size:14px;color:var(--muted);margin-bottom:8px}
+input[type=text],textarea{width:100%;font:inherit;color:var(--ink);background:var(--surface);
+  border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-top:6px}
+textarea{min-height:88px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{font:inherit;font-size:15px;color:var(--ink);background:var(--chip);border:1px solid transparent;
+  border-radius:999px;padding:8px 14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* pick cards: each option is a reel of real logos */
+.picks{display:grid;grid-template-columns:1fr;gap:14px;margin-top:12px}
+@media (min-width:600px){.picks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pick{font:inherit;color:var(--ink);background:none;border:0;padding:0;cursor:pointer;text-align:left;min-width:0}
+.reel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--screen-2);
+  border-radius:8px;overflow:hidden;border:1px solid var(--screen);transition:box-shadow .15s ease}
+.reel.odd > :last-child{grid-column:1 / -1}
+.cell{background:var(--screen);display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:6px;padding:16px 12px 10px;min-height:104px}
+.cell img{display:block;max-width:100%;max-height:46px;width:auto;height:auto;object-fit:contain}
+.cell span{font-family:var(--latin);font-size:10.5px;letter-spacing:.06em;color:var(--screen-dim);text-align:center;line-height:1.3}
+.mood{display:block;aspect-ratio:16/10;max-width:100%;border-radius:8px;overflow:hidden;background:var(--screen);transition:box-shadow .15s ease}
+.mood img{display:block;width:100%;height:100%;object-fit:cover}
+.pick[aria-pressed="true"] .mood{box-shadow:0 0 0 3px var(--accent)}
+.pick:hover .mood{box-shadow:0 0 0 2px var(--line)}
+.pick[aria-pressed="true"]:hover .mood{box-shadow:0 0 0 3px var(--accent)}
+.pick .cap{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;margin-top:8px;font-weight:600;font-size:15px}
+.pick .cap small{font-weight:400;color:var(--muted);font-size:13px}
+.pick[aria-pressed="true"] .reel{box-shadow:0 0 0 3px var(--accent)}
+.pick[aria-pressed="true"] .cap{color:var(--accent)}
+.pick:hover .reel{box-shadow:0 0 0 2px var(--line)}
+.pick[aria-pressed="true"]:hover .reel{box-shadow:0 0 0 3px var(--accent)}
+.note{margin-top:10px}
+.limit{font-size:14px;color:var(--accent);min-height:1.4em;margin-top:6px}
+
+/* gallery */
+.cat{margin-top:28px}
+.cat h3{font-size:15px;font-weight:600;margin:0;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.cat h3 small{font-weight:400;color:var(--muted);font-size:13px}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:10px}
+.tile{position:relative;font:inherit;cursor:pointer;border:0;padding:0;border-radius:6px;overflow:hidden;
+  background:var(--screen);text-align:center;min-width:0}
+.tile .cell{min-height:118px;padding:20px 10px 10px}
+.tile .cell img{max-height:44px}
+.tile .cell em{font-style:normal;font-size:11px;color:var(--screen-dim);font-family:var(--body);line-height:1.35}
+.tile::after{content:"";position:absolute;inset:0;border-radius:6px;pointer-events:none;transition:box-shadow .15s ease}
+.tile[aria-pressed="true"]::after{box-shadow:inset 0 0 0 3px var(--accent)}
+.tile .mark{position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;
+  border:1.5px solid var(--screen-dim);display:grid;place-items:center;font-size:12px;line-height:1;color:transparent}
+.tile[aria-pressed="true"] .mark{background:var(--accent);border-color:var(--accent);color:#fff}
+.tally{position:sticky;bottom:calc(12px + env(safe-area-inset-bottom,0px));margin-top:20px;display:flex;justify-content:center;pointer-events:none}
+.tally span{pointer-events:auto;background:var(--ink);color:var(--paper);font-size:14px;padding:8px 16px;border-radius:999px;font-weight:500}
+
+/* colors */
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(116px,1fr));gap:8px;margin-top:12px}
+.sw{font:inherit;cursor:pointer;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;
+  padding:0;overflow:hidden;text-align:left;min-width:0}
+.sw i{display:block;height:46px}
+.sw b{display:block;font-weight:600;font-size:13.5px;padding:7px 10px 0}
+.sw small{display:block;font-family:var(--latin);font-size:11.5px;color:var(--muted);padding:0 10px 8px;font-variant-numeric:tabular-nums}
+.sw[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.sw .ord{float:right;margin:7px 8px 0 0;font-size:11px;font-weight:700;color:var(--accent)}
+.custom{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:12px}
+.custom input[type=color]{width:46px;height:38px;border:1px solid var(--line);border-radius:6px;background:var(--surface);padding:2px;cursor:pointer}
+.custom input[type=text]{width:120px;margin:0;font-family:var(--latin);font-variant-numeric:tabular-nums}
+.preview{display:grid;grid-template-columns:1fr;gap:1px;margin-top:16px;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+@media (min-width:600px){.preview{grid-template-columns:1fr 1fr}}
+.pv{padding:28px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:140px;min-width:0}
+.pv.dark{background:var(--screen)} .pv.light{background:#f7f6f2}
+.pv .nm{font-family:var(--latin);font-weight:800;font-size:clamp(22px,5vw,30px);letter-spacing:.04em;line-height:1.1;text-align:center;overflow-wrap:anywhere}
+.pv .rule{width:56px;height:3px;border-radius:2px}
+.pv .sub{font-family:var(--latin);font-size:10px;letter-spacing:.4em;text-transform:uppercase}
+.pv.dark .sub{color:#8d8b85} .pv.light .sub{color:#6b6a66}
+
+.end{margin-top:64px;padding:28px 24px;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.end h2{font-family:var(--display);font-size:22px;margin:0 0 6px}
+.btn{font:inherit;font-weight:600;font-size:16px;background:var(--ink);color:var(--paper);border:0;
+  border-radius:8px;padding:14px 20px;margin-top:14px;cursor:pointer;width:100%}
+#status{margin:12px 0 0;font-size:15px}
+#out{font-size:14px;min-height:200px;margin-top:12px}
+.credit{margin-top:40px;font-size:12.5px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="slate" aria-hidden="true"></div>
+<main class="wrap">
+  <h1>로고 디자인<br>사전 설문</h1>
+  <p class="lede">좋아하시는 것과 피하고 싶은 것을 알려주시면 첫 시안부터 방향이 훨씬 가까워져요. 10분 정도 걸리고, 모르는 항목은 비워두셔도 괜찮아요.</p>
+  <p class="small">예시는 실제 영화사·스튜디오 로고와 색감 레퍼런스예요. 작성 중인 내용은 이 기기에 자동 저장돼요.</p>
+  <div id="form"></div>
+  <section class="end">
+    <h2>다 작성하셨나요?</h2>
+    <p class="small" style="margin:0">버튼을 누르면 답변이 정리되어 복사돼요. 카카오톡이나 메일로 붙여넣어 보내주세요.</p>
+    <button class="btn" id="copy" type="button">답변 정리해서 복사하기</button>
+    <p id="status" role="status"></p>
+    <textarea id="out" readonly aria-label="정리된 답변" hidden></textarea>
+  </section>
+  <p class="credit">로고와 레퍼런스 이미지는 각 회사와 디자이너의 것이며, 취향을 확인하기 위한 참고 자료로만 보여드려요.</p>
+</main>
+
+<script>
+const LOGOS = {
+  "a24":{n:"A24",w:"미나리 · 에브리씽 에브리웨어 올 앳 원스"},
+  "neon":{n:"NEON",w:"기생충 북미 배급"},
+  "annapurna-pictures":{n:"Annapurna Pictures",w:"그녀(Her)"},
+  "plan-b-entertainment":{n:"Plan B",w:"문라이트"},
+  "searchlight-pictures":{n:"Searchlight Pictures",w:"노매드랜드"},
+  "focus-features":{n:"Focus Features",w:"브로크백 마운틴"},
+  "bleecker-street":{n:"Bleecker Street",w:"트럼보"},
+  "ifc-films":{n:"IFC Films",w:"보이후드"},
+  "magnolia-pictures":{n:"Magnolia Pictures",w:"미국 독립영화 배급"},
+  "participant":{n:"Participant",w:"스포트라이트"},
+  "film4-productions":{n:"Film4",w:"슬럼독 밀리어네어"},
+  "working-title-films":{n:"Working Title",w:"러브 액츄얼리"},
+  "paramount-pictures":{n:"Paramount Pictures",w:"대부"},
+  "columbia-pictures":{n:"Columbia Pictures",w:"아라비아의 로렌스"},
+  "20th-century-studios":{n:"20th Century Studios",w:"아바타"},
+  "universal-pictures":{n:"Universal Pictures",w:"쥬라기 공원"},
+  "warner-bros-pictures":{n:"Warner Bros.",w:"카사블랑카"},
+  "metro-goldwyn-mayer":{n:"MGM",w:"오즈의 마법사"},
+  "united-artists":{n:"United Artists",w:"록키"},
+  "tristar-pictures":{n:"TriStar Pictures",w:"터미네이터 2"},
+  "orion-pictures":{n:"Orion Pictures",w:"양들의 침묵"},
+  "miramax":{n:"Miramax",w:"펄프 픽션"},
+  "new-line-cinema":{n:"New Line Cinema",w:"반지의 제왕"},
+  "lionsgate":{n:"Lionsgate",w:"라라랜드"},
+  "syncopy":{n:"Syncopy",w:"크리스토퍼 놀란 · 오펜하이머"},
+  "amblin-entertainment":{n:"Amblin",w:"스티븐 스필버그"},
+  "bad-robot":{n:"Bad Robot",w:"J.J. 에이브럼스"},
+  "scott-free-productions":{n:"Scott Free",w:"리들리 스콧"},
+  "lucasfilm-ltd":{n:"Lucasfilm",w:"스타워즈"},
+  "castle-rock-entertainment":{n:"Castle Rock",w:"쇼생크 탈출"},
+  "legendary-pictures":{n:"Legendary",w:"듄"},
+  "skydance":{n:"Skydance",w:"탑건: 매버릭"},
+  "blumhouse-productions":{n:"Blumhouse",w:"겟 아웃"},
+  "dreamworks-pictures":{n:"DreamWorks Pictures",w:"글래디에이터"},
+  "village-roadshow-pictures":{n:"Village Roadshow",w:"매드맥스: 분노의 도로"},
+  "marvel-studios":{n:"Marvel Studios",w:"어벤져스"},
+  "studio-ghibli":{n:"Studio Ghibli",w:"이웃집 토토로"},
+  "pixar":{n:"Pixar",w:"토이 스토리"},
+  "laika-entertainment":{n:"LAIKA",w:"코렐라인"},
+  "aardman":{n:"Aardman",w:"월레스와 그로밋"},
+  "cartoon-saloon":{n:"Cartoon Saloon",w:"울프워커스"},
+  "science-saru":{n:"Science SARU",w:"단다단"},
+  "mappa":{n:"MAPPA",w:"주술회전"},
+  "kyoto-animation":{n:"Kyoto Animation",w:"목소리의 형태"},
+  "comix-wave-films":{n:"CoMix Wave Films",w:"너의 이름은."},
+  "illumination-entertainment":{n:"Illumination",w:"슈퍼배드"},
+  "toei-animation":{n:"Toei Animation",w:"원피스"},
+  "walt-disney-pictures":{n:"Walt Disney Pictures",w:"메리 포핀스"},
+  "barunson-e-a":{n:"바른손 E&A",w:"기생충"},
+  "studio-dragon":{n:"스튜디오드래곤",w:"사랑의 불시착"},
+  "studio-mir":{n:"스튜디오 미르",w:"코라의 전설"},
+  "toho":{n:"TOHO",w:"고질라"},
+  "shaw-brothers":{n:"Shaw Brothers",w:"홍콩 무협영화"},
+  "gaumont":{n:"Gaumont",w:"레옹"},
+  "studiocanal":{n:"StudioCanal",w:"패딩턴"},
+  "hbo":{n:"HBO",w:"왕좌의 게임"},
+  "netflix":{n:"Netflix",w:"오징어 게임"}
+};
+const img = (k) => `<img src="logos/${k}.webp" alt="${LOGOS[k].n} 로고" decoding="async">`;
+const reel = (keys) => `<span class="reel${keys.length%2?" odd":""}">${keys.map(k=>`<span class="cell">${img(k)}<span>${LOGOS[k].n}</span></span>`).join("")}</span>`;
+
+const GALLERY = [
+  {t:"인디·아트하우스", d:"작가주의, 영화제 감성", k:["a24","neon","annapurna-pictures","plan-b-entertainment","searchlight-pictures","focus-features","bleecker-street","ifc-films","magnolia-pictures","participant","film4-productions","working-title-films"]},
+  {t:"할리우드 클래식", d:"역사가 긴 메이저 영화사", k:["paramount-pictures","columbia-pictures","20th-century-studios","universal-pictures","warner-bros-pictures","metro-goldwyn-mayer","united-artists","tristar-pictures","orion-pictures","miramax","new-line-cinema","lionsgate"]},
+  {t:"감독·제작자 레이블", d:"한 사람의 색이 담긴 제작사", k:["syncopy","amblin-entertainment","bad-robot","scott-free-productions","lucasfilm-ltd","castle-rock-entertainment","legendary-pictures","skydance","blumhouse-productions","dreamworks-pictures","village-roadshow-pictures","marvel-studios"]},
+  {t:"애니메이션 스튜디오", d:"캐릭터와 손맛", k:["studio-ghibli","pixar","laika-entertainment","aardman","cartoon-saloon","science-saru","mappa","kyoto-animation","comix-wave-films","illumination-entertainment","toei-animation","walt-disney-pictures"]},
+  {t:"한국·아시아·유럽, 스트리밍", d:"가까운 시장의 레퍼런스", k:["barunson-e-a","studio-dragon","studio-mir","toho","shaw-brothers","gaumont","studiocanal","hbo","netflix"]}
+];
+
+const COLORS = [
+  {n:"시네마 레드",h:"#C8102E"},{n:"버밀리언",h:"#E2492F"},{n:"앰버",h:"#E8A33D"},{n:"필름 골드",h:"#B8935A"},
+  {n:"버건디",h:"#6E1E2B"},{n:"로즈",h:"#D9567A"},{n:"올리브",h:"#6B7A3A"},{n:"포레스트",h:"#1F5E45"},
+  {n:"틸",h:"#1F7A7A"},{n:"코발트",h:"#2350C8"},{n:"미드나잇 네이비",h:"#1E2E4F"},{n:"바이올렛",h:"#6A4FA3"},
+  {n:"크림",h:"#EDE3CF"},{n:"웜 그레이",h:"#8C877D"},{n:"차콜",h:"#2B2B2E"}
+];
+
+const SECTIONS = [
+  {title:"기본 정보", items:[
+    {id:"name_ko", type:"text", label:"회사명 (국문)", ph:"예: 여울 픽처스"},
+    {id:"name_en", type:"text", label:"회사명 (영문 표기)", ph:"예: Yeoul Pictures"},
+    {id:"meaning", type:"textarea", label:"회사명에 담긴 뜻이나 이야기가 있다면 알려주세요"},
+    {id:"contact", type:"text", label:"담당자 성함과 연락처"}
+  ]},
+  {title:"어떤 작품을 만드시나요", items:[
+    {id:"genre", type:"multi", label:"주로 제작하시는 분야", hint:"여러 개 골라주셔도 돼요", options:["장편 영화","단편 영화","다큐멘터리","드라마/OTT 시리즈","애니메이션","광고","뮤직비디오","기타"]},
+    {id:"works", type:"textarea", label:"대표작이나 준비 중인 작품이 있다면 적어주세요"},
+    {id:"films", type:"textarea", label:"좋아하는 영화나 감독, 회사가 지향하는 영화의 톤", hint:"로고 분위기를 잡는 데 가장 큰 힌트가 돼요"}
+  ]},
+  {title:"원하는 첫인상", items:[
+    {id:"mood", type:"multi", max:3, label:"로고를 본 사람이 이렇게 느꼈으면 좋겠어요", hint:"최대 3개까지 골라주세요", options:["시네마틱한","클래식한","실험적인","따뜻한","차가운","신뢰감 있는","젊은","고급스러운","대담한","잔잔한","유머러스한","독립영화다운"]},
+    {id:"motif", type:"multi", label:"넣고 싶은 모티프가 있나요", options:["빛","필름/프레임","렌즈/카메라","회사명의 의미","추상적인 도형","글자만으로 충분해요"]}
+  ]},
+  {title:"끌리는 로고 고르기", intro:"실제 영화사와 스튜디오 로고를 성격별로 모았어요. 마음에 드는 걸 자유롭게 눌러주세요. 3~6개 정도면 충분해요.", items:[
+    {id:"likes", type:"gallery", label:"마음에 드는 로고"},
+    {id:"likes_note", type:"text", label:"고른 로고에서 특히 좋았던 점 (선택)", ph:"예: A24처럼 짧고 단단한 느낌"}
+  ]},
+  {title:"취향 고르기", intro:"각 묶음을 하나의 느낌으로 보시고 더 끌리는 쪽을 골라주세요. 이유를 한 줄 적어주시면 더 정확해져요.", items:[
+    {id:"form", type:"pick", label:"어떤 형태가 끌리세요?", options:[
+      {k:"워드마크", d:"글자만", l:["a24","neon","lionsgate","bleecker-street"]},
+      {k:"심볼 + 글자", d:"그림과 이름", l:["studio-ghibli","new-line-cinema","magnolia-pictures","legendary-pictures"]},
+      {k:"모노그램", d:"이니셜", l:["hbo","metro-goldwyn-mayer","united-artists","annapurna-pictures"]},
+      {k:"엠블럼", d:"뱃지형", l:["paramount-pictures","20th-century-studios","universal-pictures","warner-bros-pictures"]}]},
+    {id:"type", type:"pick", label:"글자 느낌", options:[
+      {k:"세리프", d:"부리가 있는 글자", l:["skydance","castle-rock-entertainment","pixar","toho"]},
+      {k:"산세리프", d:"깔끔한 글자", l:["focus-features","plan-b-entertainment","legendary-pictures","studio-dragon"]}]},
+    {id:"era", type:"pick", label:"시대감", options:[
+      {k:"클래식", d:"전통 있는 영화사처럼", l:["columbia-pictures","lucasfilm-ltd","metro-goldwyn-mayer","tristar-pictures"]},
+      {k:"모던", d:"요즘 스튜디오처럼", l:["neon","barunson-e-a","ifc-films","bleecker-street"]}]},
+    {id:"weight", type:"pick", label:"무게감", options:[
+      {k:"묵직하게", l:["hbo","miramax","orion-pictures","cartoon-saloon"]},
+      {k:"가볍게", l:["focus-features","new-line-cinema","village-roadshow-pictures","annapurna-pictures"]}]},
+    {id:"detail", type:"pick", label:"디테일", options:[
+      {k:"미니멀", d:"최소한으로", l:["a24","plan-b-entertainment","focus-features","lionsgate"]},
+      {k:"디테일", d:"요소를 풍성하게", l:["syncopy","lucasfilm-ltd","paramount-pictures","columbia-pictures"]}]},
+    {id:"color", type:"pick", label:"색", options:[
+      {k:"흑백", d:"한 가지 색으로", l:["a24","hbo","neon","syncopy"]},
+      {k:"포인트 컬러", d:"상징색이 있는", l:["netflix","mappa","gaumont","kyoto-animation"]}]},
+    {id:"palette_mood", type:"pick", label:"색감은 어느 쪽이 끌리세요?", hint:"전달해주신 레퍼런스예요. 로고 자체보다 색을 쓰는 방식을 봐주세요.", options:[
+      {k:"비비드 그라데이션", d:"빛이 번지는 듯한 화려한 배경", img:"gradient"},
+      {k:"컬러 시스템", d:"한 로고를 여러 톤으로 바꿔 쓰기", img:"palette"},
+      {k:"강한 단색 + 블랙", d:"쨍한 배경에 검은 로고", img:"lime"},
+      {k:"블랙 & 화이트", d:"어두운 바탕에 흰 로고", img:"mono"}]},
+    {id:"point", type:"colors", max:2, label:"포인트 컬러를 골라주세요", hint:"최대 2개까지. 첫 번째는 메인, 두 번째는 보조 색으로 볼게요. 흑백을 고르셨다면 건너뛰셔도 돼요."}
+  ]},
+  {title:"어디에 쓰이나요", items:[
+    {id:"usage", type:"multi", label:"로고가 쓰일 곳", options:["영화 오프닝/엔딩 크레딧","포스터","명함/서류","웹사이트","SNS 프로필","굿즈"]},
+    {id:"motion", type:"single", label:"오프닝용 모션 로고(움직이는 로고)도 필요하신가요?", options:["네, 필요해요","나중에 필요할 수도 있어요","아니요"]}
+  ]},
+  {title:"마지막으로", items:[
+    {id:"avoid", type:"textarea", label:"이런 느낌은 피하고 싶다 하는 게 있나요"},
+    {id:"refs", type:"textarea", label:"그 밖에 참고하고 싶은 로고나 이미지 링크", hint:"인스타그램, 핀터레스트, 영화 포스터 링크 모두 좋아요"},
+    {id:"deadline", type:"text", label:"희망하시는 완료 시점", ph:"예: 11월 말, 영화제 출품 전"}
+  ]}
+];
+
+const KEY = "logo-survey-v1";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e) { state = {}; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} };
+const el = (tag, attrs={}, html="") => { const n=document.createElement(tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (html) n.innerHTML=html; return n; };
+const HEX = /^#[0-9a-f]{6}$/i;
+const colorName = (h) => (COLORS.find(c=>c.h.toLowerCase()===h.toLowerCase())||{n:"직접 고른 색"}).n;
+
+function chipGroup(item, opts, multi, onLimit){
+  const wrap = el("div",{class:"chips"});
+  const cur = () => multi ? (state[item.id] || []) : state[item.id];
+  opts.forEach(o => {
+    const b = el("button",{type:"button",class:"chip"}); b.textContent=o;
+    const sync = () => b.setAttribute("aria-pressed", multi ? cur().includes(o) : cur()===o);
+    b.addEventListener("click", () => {
+      if (multi){
+        let v = [...cur()];
+        if (v.includes(o)) v = v.filter(x=>x!==o);
+        else { if (item.max && v.length>=item.max){ onLimit && onLimit(); return; } v.push(o); }
+        state[item.id]=v;
+      } else state[item.id] = cur()===o ? "" : o;
+      save(); wrap.querySelectorAll(".chip").forEach(c=>c._sync());
+    });
+    b._sync=sync; sync(); wrap.appendChild(b);
+  });
+  return wrap;
+}
+
+const limitMsg = (msg, text) => { msg.textContent = text; clearTimeout(msg._t); msg._t = setTimeout(()=>msg.textContent="", 2600); };
+const previews = [];
+
+function galleryItem(item){
+  if (!Array.isArray(state[item.id])) state[item.id] = [];
+  const box = el("div",{class:"q",role:"group","aria-label":item.label});
+  const tally = el("div",{class:"tally","aria-live":"polite"},"<span></span>");
+  const syncTally = () => { const n = state[item.id].length; tally.firstChild.textContent = `${n}개 골랐어요`; tally.hidden = n===0; };
+  GALLERY.forEach(cat => {
+    const c = el("div",{class:"cat"});
+    c.appendChild(el("h3",{},`${cat.t}<small>${cat.d}</small>`));
+    const wall = el("div",{class:"wall"});
+    cat.k.forEach(k => {
+      const t = el("button",{type:"button",class:"tile","aria-label":`${LOGOS[k].n} (${LOGOS[k].w})`},
+        `<span class="cell">${img(k)}<span>${LOGOS[k].n}</span><em>${LOGOS[k].w}</em></span><span class="mark" aria-hidden="true">✓</span>`);
+      const sync = () => t.setAttribute("aria-pressed", state[item.id].includes(k));
+      t.addEventListener("click", () => {
+        const v = state[item.id];
+        state[item.id] = v.includes(k) ? v.filter(x=>x!==k) : [...v, k];
+        save(); sync(); syncTally();
+      });
+      sync(); wall.appendChild(t);
+    });
+    c.appendChild(wall); box.appendChild(c);
+  });
+  box.appendChild(tally); syncTally();
+  return box;
+}
+
+function colorItem(item){
+  if (!state[item.id] || typeof state[item.id]!=="object" || !Array.isArray(state[item.id].list)) state[item.id]={list:[],note:""};
+  const st = state[item.id];
+  const q = el("div",{class:"q",role:"group","aria-label":item.label});
+  q.appendChild(el("span",{class:"ql"}, item.label));
+  q.appendChild(el("span",{class:"hint"}, item.hint));
+  const msg = el("div",{class:"limit","aria-live":"polite"});
+  const grid = el("div",{class:"swatches"});
+  const btns = [];
+  const syncAll = () => {
+    btns.forEach(b => {
+      const i = st.list.findIndex(h=>h.toLowerCase()===b.dataset.h.toLowerCase());
+      b.setAttribute("aria-pressed", i>=0);
+      b.querySelector(".ord").textContent = i===0 ? "메인" : i===1 ? "보조" : "";
+    });
+    previews.forEach(fn=>fn());
+  };
+  const toggle = (h) => {
+    const i = st.list.findIndex(x=>x.toLowerCase()===h.toLowerCase());
+    if (i>=0) st.list.splice(i,1);
+    else { if (st.list.length>=item.max){ limitMsg(msg, `${item.max}개까지 고를 수 있어요. 하나를 해제하고 다시 골라주세요.`); return; } st.list.push(h); }
+    save(); syncAll();
+  };
+  COLORS.forEach(c => {
+    const b = el("button",{type:"button",class:"sw","data-h":c.h},
+      `<i style="background:${c.h}"></i><span class="ord"></span><b>${c.n}</b><small>${c.h}</small>`);
+    b.addEventListener("click", () => toggle(c.h));
+    btns.push(b); grid.appendChild(b);
+  });
+  q.appendChild(grid);
+
+  const custom = el("div",{class:"custom"});
+  const picker = el("input",{type:"color",id:"point-picker","aria-label":"직접 색 고르기",value:"#3a6ea5"});
+  const hex = el("input",{type:"text",id:"point-hex","aria-label":"색상 코드",value:"#3A6EA5",maxlength:"7"});
+  const add = el("button",{type:"button",class:"chip"}); add.textContent="이 색 추가";
+  picker.addEventListener("input", () => { hex.value = picker.value.toUpperCase(); });
+  hex.addEventListener("input", () => { if (HEX.test(hex.value)) picker.value = hex.value.toLowerCase(); });
+  add.addEventListener("click", () => {
+    const h = (HEX.test(hex.value) ? hex.value : picker.value).toUpperCase();
+    if (st.list.some(x=>x.toLowerCase()===h.toLowerCase())) return;
+    toggle(h);
+  });
+  custom.appendChild(el("span",{class:"small"},"원하는 색이 없다면"));
+  custom.append(picker, hex, add);
+  q.appendChild(custom);
+  q.appendChild(msg);
+
+  const pv = el("div",{class:"preview","aria-label":"선택한 색 미리보기"});
+  const mk = (cls) => { const p = el("div",{class:"pv "+cls}); p.innerHTML = `<span class="nm"></span><span class="rule"></span><span class="sub">Pictures</span>`; pv.appendChild(p); return p; };
+  const dark = mk("dark"), light = mk("light");
+  previews.push(() => {
+    const name = (state.name_en || state.name_ko || "Yeoul").trim().replace(/\s+(pictures|films?|studios?)$/i,"");
+    const [a,b] = st.list;
+    [[dark,"#f2f0ea"],[light,"#161616"]].forEach(([p,base]) => {
+      p.querySelector(".nm").textContent = name.toUpperCase();
+      p.querySelector(".nm").style.color = a || base;
+      p.querySelector(".rule").style.background = b || a || base;
+    });
+    // extra pills beside the swatches for picked custom colors
+    q.querySelectorAll(".chip.picked").forEach(n=>n.remove());
+    st.list.filter(h=>!COLORS.some(c=>c.h.toLowerCase()===h.toLowerCase())).forEach(h => {
+      const c = el("button",{type:"button",class:"chip picked","aria-pressed":"true"},
+        `<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:${h};vertical-align:-1px;margin-right:6px"></span>${h} 해제`);
+      c.addEventListener("click", () => toggle(h));
+      custom.appendChild(c);
+    });
+  });
+  q.appendChild(pv);
+  q.appendChild(el("span",{class:"hint",style:"margin-top:8px"},"위 미리보기는 색 조합만 보여드리는 거예요. 실제 로고 모양과는 달라요."));
+
+  const note = el("input",{type:"text",class:"note",id:"point-note","aria-label":"포인트 컬러 메모"});
+  note.placeholder="색에 대한 메모가 있다면 (선택) 예: 너무 쨍하지 않은 빨강"; note.value = st.note || "";
+  note.addEventListener("input", () => { st.note = note.value; save(); });
+  q.appendChild(note);
+  syncAll();
+  return q;
+}
+
+const form = document.getElementById("form");
+SECTIONS.forEach((sec, si) => {
+  const s = el("section",{class:"sec"});
+  s.appendChild(el("h2",{},`<span class="n">${String(si+1).padStart(2,"0")}</span>${sec.title}`));
+  if (sec.intro) s.appendChild(el("p",{class:"intro"}, sec.intro));
+  sec.items.forEach(item => {
+    if (item.type==="text" || item.type==="textarea"){
+      const q = el("label",{class:"q"});
+      q.appendChild(el("span",{class:"ql"}, item.label));
+      if (item.hint) q.appendChild(el("span",{class:"hint"}, item.hint));
+      const f = item.type==="text" ? el("input",{type:"text",id:"f-"+item.id}) : el("textarea",{id:"f-"+item.id});
+      if (item.ph) f.placeholder=item.ph;
+      f.value = state[item.id] || "";
+      f.addEventListener("input", () => { state[item.id]=f.value; save(); if (item.id.startsWith("name_")) previews.forEach(fn=>fn()); });
+      q.appendChild(f); s.appendChild(q);
+    } else if (item.type==="multi" || item.type==="single"){
+      const q = el("div",{class:"q",role:"group","aria-label":item.label});
+      q.appendChild(el("span",{class:"ql"}, item.label));
+      if (item.hint) q.appendChild(el("span",{class:"hint"}, item.hint));
+      const msg = el("div",{class:"limit","aria-live":"polite"});
+      q.appendChild(chipGroup(item, item.options, item.type==="multi", () => limitMsg(msg, `${item.max}개까지 고를 수 있어요. 하나를 해제하고 다시 골라주세요.`)));
+      if (item.max) q.appendChild(msg);
+      s.appendChild(q);
+    } else if (item.type==="gallery"){
+      s.appendChild(galleryItem(item));
+    } else if (item.type==="colors"){
+      s.appendChild(colorItem(item));
+    } else if (item.type==="pick"){
+      if (!state[item.id] || typeof state[item.id]!=="object") state[item.id]={choice:"",note:""};
+      const st = state[item.id];
+      const q = el("div",{class:"q",role:"group","aria-label":item.label});
+      q.appendChild(el("span",{class:"ql"}, item.label));
+      if (item.hint) q.appendChild(el("span",{class:"hint"}, item.hint));
+      const grid = el("div",{class:"picks"});
+      const all = [];
+      const syncAll = () => all.forEach(b => b.setAttribute("aria-pressed", st.choice===b.dataset.k));
+      item.options.forEach(o => {
+        const b = el("button",{type:"button",class:"pick","data-k":o.k,"aria-label":o.img ? `${o.k}. ${o.d}` : `${o.k}. 예: ${o.l.map(k=>LOGOS[k].n).join(", ")}`},
+          `${o.img ? `<span class="mood"><img src="moods/${o.img}.webp" alt="${o.k} 레퍼런스" decoding="async"></span>` : reel(o.l)}<span class="cap">${o.k}${o.d?`<small>${o.d}</small>`:""}</span>`);
+        b.addEventListener("click", () => { st.choice = st.choice===o.k ? "" : o.k; save(); syncAll(); });
+        all.push(b); grid.appendChild(b);
+      });
+      q.appendChild(grid);
+      const extra = el("div",{class:"chips"});
+      [item.options.length>2 ? "다 좋아요" : "둘 다 좋아요","잘 모르겠어요"].forEach(t => {
+        const b = el("button",{type:"button",class:"chip","data-k":t}); b.textContent=t;
+        b.addEventListener("click", () => { st.choice = st.choice===t ? "" : t; save(); syncAll(); });
+        all.push(b); extra.appendChild(b);
+      });
+      q.appendChild(extra);
+      const note = el("input",{type:"text",class:"note",id:"note-"+item.id,"aria-label":item.label+" 이유"});
+      note.placeholder="이유가 있다면 한 줄로 (선택)"; note.value=st.note||"";
+      note.addEventListener("input", () => { st.note=note.value; save(); });
+      q.appendChild(note);
+      syncAll(); s.appendChild(q);
+    }
+  });
+  form.appendChild(s);
+});
+
+function summary(){
+  const lines = ["[로고 디자인 사전 설문 답변]",""];
+  SECTIONS.forEach((sec, si) => {
+    lines.push(`■ ${si+1}. ${sec.title}`);
+    sec.items.forEach(item => {
+      let v = state[item.id];
+      if (item.type==="pick") v = v && v.choice ? v.choice + (v.note ? ` (이유: ${v.note})` : "") : "";
+      else if (item.type==="gallery") v = (v||[]).filter(k=>LOGOS[k]).map(k=>LOGOS[k].n).join(", ");
+      else if (item.type==="colors") v = v && v.list && v.list.length
+        ? v.list.map((h,i)=>`${i===0?"메인":"보조"} ${colorName(h)} ${h.toUpperCase()}`).join(" / ") + (v.note ? ` (메모: ${v.note})` : "")
+        : (v && v.note ? `(메모: ${v.note})` : "");
+      else if (Array.isArray(v)) v = v.join(", ");
+      lines.push(`- ${item.label}: ${(v||"").toString().trim() || "(미작성)"}`);
+    });
+    lines.push("");
+  });
+  return lines.join("\n");
+}
+
+document.getElementById("copy").addEventListener("click", async () => {
+  const out = document.getElementById("out"), status = document.getElementById("status");
+  const text = summary();
+  out.value = text; out.hidden = false;
+  let ok = false;
+  try { await navigator.clipboard.writeText(text); ok = true; } catch(e) {
+    try { out.focus(); out.select(); ok = document.execCommand("copy"); } catch(e2) { ok = false; }
+  }
+  status.textContent = ok
+    ? "복사됐어요. 카카오톡이나 메일에 붙여넣어 보내주세요."
+    : "자동 복사가 안 됐어요. 아래 내용을 길게 눌러 전체 선택 후 복사해 주세요.";
+});
+</script>
