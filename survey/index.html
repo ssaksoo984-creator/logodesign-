@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Logo Design Brief</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +30,10 @@
   --screen:#0c0c0e; --screen-2:#161619; color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+img{max-width:100%}
+[hidden]{display:none!important}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
   font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
 .slate{height:26px;background:repeating-linear-gradient(-45deg,var(--ink) 0 16px,var(--paper) 16px 32px)}
 .wrap{max-width:760px;margin:0 auto;padding-inline:20px;padding-block:40px 80px}
@@ -121,6 +129,8 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .credit{margin-top:40px;font-size:12.5px;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+</head>
+<body>
 
 <div class="slate" aria-hidden="true"></div>
 <main class="wrap">
@@ -130,27 +140,25 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
   <div id="form"></div>
   <section class="end">
     <h2>Send your answers</h2>
-    <p class="small" style="margin:0">Two quick steps. The image shows exactly which logos and colors you picked.</p>
+    <p class="small" style="margin:0">Save the image and copy your answers, then email both to me.</p>
     <ol class="steps">
       <li>
         <h3>Save your summary image</h3>
-        <span class="small">It updates as you answer. On a phone you can also press and hold the image to save it.</span>
+        <span class="small">It shows exactly which logos and colors you picked, and updates as you answer. On a phone you can also press and hold the image to save it.</span>
         <div>
           <button class="btn" id="save-img" type="button">Save summary image</button>
           <img id="board" alt="Summary of your answers" hidden>
         </div>
       </li>
       <li>
-        <h3>Email it to me</h3>
-        <span class="small">The button opens an email with your answers already written in. Attach the image before sending.</span>
-        <div>
-          <div class="row">
-            <a class="btn" id="mail" href="#" target="_blank" rel="noopener" style="text-align:center;text-decoration:none">Open email with my answers</a>
-          </div>
-          <p class="small" style="margin:12px 0 4px">If no email opens, send it yourself to</p>
-          <div class="row"><span class="addr" id="addr">ssaksoo984@gmail.com</span><button class="chip" id="copy-addr" type="button">Copy address</button></div>
-          <div class="row"><button class="btn alt" id="copy" type="button">Copy my answers as text</button></div>
-        </div>
+        <h3>Copy your answers</h3>
+        <span class="small">Copies all your answers as text, ready to paste into an email.</span>
+        <div><button class="btn" id="copy" type="button">Copy my answers</button></div>
+      </li>
+      <li>
+        <h3>Email both to me</h3>
+        <span class="small">Paste your answers into the email and attach the image.</span>
+        <div class="row"><span class="addr" id="addr">ssaksoo984@gmail.com</span><button class="chip" id="copy-addr" type="button">Copy address</button></div>
       </li>
     </ol>
     <p id="status" role="status"></p>
@@ -486,21 +494,12 @@ async function copyText(text, fallbackEl){
 document.getElementById("copy").addEventListener("click", async () => {
   const out = document.getElementById("out");
   out.value = summary(); out.hidden = false;
-  say(await copyText(out.value, out) ? "Answers copied. Paste them into an email to " + EMAIL + "."
+  say(await copyText(out.value, out) ? "Answers copied. Paste them into an email to " + EMAIL + " and attach the image."
     : "Couldn't copy automatically. Select all the text below and copy it.");
 });
 document.getElementById("copy-addr").addEventListener("click", async () => {
   say(await copyText(EMAIL) ? "Address copied." : "Couldn't copy. Press and hold the address to select it.");
 });
-const mail = document.getElementById("mail");
-const refreshMail = () => {
-  const subject = "Logo design brief" + (brandName() ? " – " + brandName() : "");
-  let body = summary() + "\n\n(Summary image attached)";
-  if (body.length > 6000) body = body.slice(0, 6000) + "\n…";
-  mail.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-};
-mail.addEventListener("click", () => { refreshMail(); say("If your email app didn't open, copy the address and your answers below and send them yourself."); });
-
 /* summary image */
 const imgCache = {};
 const loadImg = (k) => imgCache[k] || (imgCache[k] = new Promise(res => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = `samples/${k}.webp`; }));
@@ -592,18 +591,27 @@ let boardTimer;
 const refreshBoard = () => { clearTimeout(boardTimer); boardTimer = setTimeout(async () => {
   try { const c = await drawBoard(); board.src = c.toDataURL("image/png"); board.hidden = false; } catch(e) { board.hidden = true; }
 }, 400); };
-document.addEventListener("click", () => { refreshBoard(); refreshMail(); }, true);
-document.addEventListener("input", () => { refreshBoard(); refreshMail(); }, true);
-(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { refreshBoard(); refreshMail(); });
+document.addEventListener("click", refreshBoard, true);
+document.addEventListener("input", refreshBoard, true);
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(refreshBoard);
 
 const saveBtn = document.getElementById("save-img");
 let downloads = null;
-(async () => { try { downloads = window.claude?.use ? await window.claude.use("downloads") : null; } catch(e) {} })();
+(async () => { try { downloads = window.claude?.use ? await window.claude.use("downloads") : null; } catch(e) { downloads = null; } })();
 saveBtn.addEventListener("click", async () => {
   const c = await drawBoard();
   const blob = await new Promise(r => c.toBlob(r, "image/png"));
   const name = "logo-brief" + (brandName() ? "-" + brandName().toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"") : "") + ".png";
-  if (!downloads) { board.src = c.toDataURL("image/png"); board.hidden = false; say("Saving isn't available here. Press and hold (or right-click) the image to save it."); return; }
+  board.src = c.toDataURL("image/png"); board.hidden = false;
+  if (!downloads) {
+    try {
+      const url = URL.createObjectURL(blob), a = document.createElement("a");
+      a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+      say("Image saved. Attach it to your email. If nothing downloaded, press and hold (or right-click) the image to save it.");
+    } catch(e) { say("Press and hold (or right-click) the image to save it."); }
+    return;
+  }
   try { await downloads.save({filename: name, data: blob}); say("Image saved. Attach it to your email."); }
   catch(e) {
     if (e && e.code === "declined") say("Not saved.");
@@ -612,3 +620,5 @@ saveBtn.addEventListener("click", async () => {
   }
 });
 </script>
+</body>
+</html>
