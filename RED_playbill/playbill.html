@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>RED — Playbill · Triple M Productions</title><style>@font-face{font-family:Ds;font-weight:400;font-style:normal;src:url(fonts/instrument-serif-latin-400-normal.woff2)}@font-face{font-family:Ds;font-weight:400;font-style:italic;src:url(fonts/instrument-serif-latin-400-italic.woff2)}@font-face{font-family:Sn;font-weight:400;font-style:normal;src:url(fonts/inter-latin-400-normal.woff2)}@font-face{font-family:Sn;font-weight:500;font-style:normal;src:url(fonts/inter-latin-500-normal.woff2)}@font-face{font-family:Sn;font-weight:600;font-style:normal;src:url(fonts/inter-latin-600-normal.woff2)}@font-face{font-family:Pt;font-weight:400;font-style:normal;src:url(fonts/Pretendard-Regular.woff2)}@font-face{font-family:Pt;font-weight:500;font-style:normal;src:url(fonts/Pretendard-Medium.woff2)}@font-face{font-family:Pt;font-weight:600;font-style:normal;src:url(fonts/Pretendard-SemiBold.woff2)}@font-face{font-family:Tx;font-weight:400;font-style:normal;src:url(fonts/source-serif-4-latin-400-normal.woff2)}@font-face{font-family:Tx;font-weight:400;font-style:italic;src:url(fonts/source-serif-4-latin-400-italic.woff2)}@font-face{font-family:Tx;font-weight:600;font-style:normal;src:url(fonts/source-serif-4-latin-600-normal.woff2)}@font-face{font-family:Tx;font-weight:400;font-style:normal;src:url(fonts/source-serif-4-latin-ext-400-normal.woff2)}
+@page{size:5.75in 8.75in;margin:0}*{box-sizing:border-box;margin:0;padding:0}
+html{background:#555}body{-webkit-print-color-adjust:exact;print-color-adjust:exact;font-family:Pt,sans-serif;font-size:7pt;line-height:1.6;letter-spacing:-.005em;word-break:keep-all;font-kerning:normal}
+@media screen{body{display:grid;grid-template-columns:repeat(2,5.75in);justify-content:center;row-gap:.5in;padding:.5in 0}.page{order:1;box-shadow:0 2px 14px rgba(0,0,0,.35)}.page.back{order:0}}
+.page{width:5.75in;height:8.75in;position:relative;overflow:hidden;break-after:page;--ink:#333;--line:rgba(51,51,51,.13);color:var(--ink)}
+.page::after{content:"";position:absolute;inset:0;background:url(img/grain.png) 0 0/1.6in;pointer-events:none;z-index:50}
+.wht{background:#ecebe7 url(img/paper.jpg) center/cover} .wht::after{mix-blend-mode:multiply;opacity:.13}
+.red{background:#c8191e;--ink:#fff;--line:rgba(0,0,0,.14)} .red::after{background-image:url(img/grain_soft.png);mix-blend-mode:multiply;opacity:.6}
+.blk{background:#16191b;--ink:#e6e4df;--line:rgba(236,235,231,.13)} .blk::after{mix-blend-mode:screen;opacity:.07}
+.cov::after{background-image:url(img/grain_soft.png);mix-blend-mode:multiply;opacity:.45}
+.a{position:absolute}
+/* running head / foot */
+.rh,.rf{position:absolute;left:.6in;right:.6in;display:flex;justify-content:space-between;font-family:Sn;font-weight:500;font-size:5.2pt;letter-spacing:.2em;text-transform:uppercase;z-index:8}
+.rh{top:.48in} .rf{bottom:.4in;padding-top:.09in;border-top:.5pt solid var(--line)}
+.rf .n{font-family:Ds;font-size:8.5pt;letter-spacing:.02em;line-height:.7}
+.body{position:absolute;left:.6in;right:.6in;top:.95in;bottom:.78in;display:flex;flex-direction:column;z-index:5}
+.cap{font-family:Sn;font-weight:500;font-size:5.4pt;letter-spacing:.2em;text-transform:uppercase}
+.acc{color:#c8191e} .red .acc{color:#fff}
+.th{display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:.16in;border-bottom:.5pt solid var(--line)}
+.th h1{font-family:Ds;font-weight:400;font-size:25pt;line-height:.95;letter-spacing:-.012em}
+.th h1 i{font-style:italic;font-family:Ds}
+.sq{display:inline-block;width:.075in;height:.075in;background:#c8191e;margin-left:.07in} .red .sq{background:#fff}
+.ic{width:.36in;height:.36in;flex:none;color:#c8191e} .red .ic{color:#fbf3ee}
+.ic svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
+.row{display:grid;grid-template-columns:1.25in 1fr;padding:.1in 0;border-bottom:.5pt solid var(--line)}
+.ld{display:flex;justify-content:space-between;align-items:baseline;line-height:1.8}
+.ld span:first-child{font-size:6.8pt} .ld span:last-child{font-family:Ds;font-size:10.5pt}
+.chip{display:inline-block;font-family:Sn;font-weight:500;font-size:5pt;letter-spacing:.14em;text-transform:uppercase;line-height:1.5;color:#6d5300;background:#f6e7a9;padding:.035in .07in;position:relative;z-index:6}
+.ph{}
+/* bios: rows share the height equally */
+.rows{flex:1;display:grid;min-height:0}
+.b{display:grid;gap:.22in;padding-top:.17in;border-top:.5pt solid var(--line);min-height:0}
+.rows .b:first-child{border-top:0}
+.b img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;filter:grayscale(1) contrast(1.04)}
+.b .nm{font-family:Ds;font-size:16pt;line-height:1;margin:.06in 0 .09in;letter-spacing:-.005em}
+.b .tx{text-align:left} .b .tx i,.body i:not(h1 i){font-style:normal}
+.r2 .b{grid-template-columns:1.3in 1fr} .r2 .tx{font-size:6.6pt;line-height:1.55}
+.r3 .b{grid-template-columns:1in 1fr;gap:.2in;padding-top:.14in} .r3 .tx{font-size:6.1pt;line-height:1.48} .r3 .b .nm{font-size:13.5pt;margin:.04in 0 .05in}
+/* v9: chapter tag, bands that cross the gutter */
+.tag{display:inline-block;background:#c8191e;color:#fff;border-radius:99px;padding:.012in .075in .006in;margin-right:.08in;font-weight:600;letter-spacing:.1em}
+.red .tag{background:#fff;color:#c8191e}
+.band{position:absolute;left:0;right:0;bottom:0;top:3.75in;z-index:3} .band.half{top:4.375in}
+.rf.on-red{color:#fff;border-top-color:rgba(0,0,0,.14);z-index:9} .rf.on-dark{color:#e6e4df;border-top-color:rgba(236,235,231,.24);z-index:9}
+.cols2{columns:2;column-gap:.26in;font-size:6.8pt;line-height:1.62}
+/* v10 */
+.col{display:flex;flex-direction:column;min-height:0}
+.col .ph{width:100%;aspect-ratio:5/6;object-fit:cover;display:block;filter:grayscale(1) contrast(1.04)}
+.col .nm{font-family:Ds;font-size:13pt;line-height:1.05;margin:.04in 0 .08in}
+.col .tx{font-size:6.2pt;line-height:1.5} .col .tx i{font-style:normal}
+.hr{border-top:.5pt solid var(--line)}
+/* v11 — editorial index layout */
+.xl{font-family:Ds;font-size:38pt;line-height:.9;letter-spacing:-.022em} .xl i{font-style:italic}
+.pill{display:inline-block;border:.5pt solid var(--line);border-radius:99px;padding:.028in .085in .018in;font-family:Sn;font-weight:500;font-size:4.8pt;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.mk{width:.09in;height:.09in;background:#c8191e;display:block}
+.lx{display:grid;grid-template-columns:.95in 1fr;gap:.18in}
+.lrow{display:grid;grid-template-columns:.4in 1fr auto;gap:.12in;align-items:baseline;padding:.058in 0;border-bottom:.5pt solid var(--line)}
+.lrow:first-child{border-top:.5pt solid var(--line)}
+.idx{font-family:Sn;font-weight:500;font-size:5.6pt;letter-spacing:.04em;color:#c8191e}
+.lrow .rt{font-family:Ds;font-size:10.5pt;line-height:1}
+.spd{display:flex;justify-content:space-between;font-family:Sn;font-weight:500;font-size:5.2pt;letter-spacing:.2em;text-transform:uppercase;padding-top:.1in;border-top:.5pt solid var(--line)}
+.stmt{font-family:Ds;font-size:13pt;line-height:1.18;letter-spacing:-.005em}
+
+/* v12 — trend pass: huge titles, big numerals, one symbol per spread */
+.xl{font-size:50pt;line-height:.86;letter-spacing:-.03em}
+.xl i,.th h1 i,.bigcap i{font-style:italic}
+.red .xl i.acc,.band .xl i{color:#fff}
+.th{border-bottom:0;padding-bottom:.1in}
+.th h1{font-size:46pt;line-height:.88;letter-spacing:-.03em}
+.bn{font-family:Ds;font-size:46pt;line-height:.8;color:#c8191e;letter-spacing:-.03em}
+.rk{position:relative;width:3.42in;height:1.1in;display:block}
+.rk i{position:absolute;display:block;filter:blur(2.2px)}
+.rk i:nth-child(1){top:0;left:0;right:0;height:.6in;background:#c8191e;box-shadow:0 0 .1in rgba(200,25,30,.35)}
+.rk i:nth-child(2){bottom:0;height:.34in;left:.14in;right:.14in;background:#3a0709}
+.bigcap{font-family:Ds;font-size:50pt;line-height:.9;letter-spacing:-.03em;color:#fff;z-index:7;text-shadow:0 0 .25in rgba(0,0,0,.35)}
+.rf{border-top:0}
+.lrow:first-child{border-top:0}
+</style></head><body><section class="page cov" style="background:#b8161a url(img/cover_poster.jpg) center/100% 100% no-repeat"></section><section class="page wht verso"><div class="rh" style=""><span>Red — John Logan</span><span><span class="tag">01</span>The Company</span></div>
+ <div class="body">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+   <div class="xl">Cast <i class="acc">&amp;</i><br>Creative</div><div class="bn ">01</div></div>
+  <div style="height:.34in"></div>
+  <div class="lx"><div><span class="pill">The Cast</span></div><div><div class="lrow"><span class="idx">[01]</span><span>Mark Rothko</span><span class="rt">Rob LaBelle*</span></div><div class="lrow"><span class="idx">[02]</span><span>Ken</span><span class="rt">Mozi Mayaleh*</span></div></div></div>
+  <div class="rk" style="margin:.22in 0 .22in 1.13in"><i></i><i></i></div>
+  <div class="lx"><div><span class="pill">Creative Team</span></div><div><div class="lrow"><span class="idx">[03]</span><span>Director</span><span class="rt">Jennifer Copping</span></div><div class="lrow"><span class="idx">[04]</span><span>Producer</span><span class="rt">Rhonda Dent</span></div><div class="lrow"><span class="idx">[05]</span><span>Production Designer</span><span class="rt">Starlynn Chen</span></div><div class="lrow"><span class="idx">[06]</span><span>Lighting Designer</span><span class="rt">Sam Cheng</span></div><div class="lrow"><span class="idx">[07]</span><span>Sound Designer</span><span class="rt">Ben Elliott</span></div><div class="lrow"><span class="idx">[08]</span><span>Stage Manager</span><span class="rt">Gerri Torres</span></div><div class="lrow"><span class="idx">[09]</span><span>Assistant Stage Manager</span><span class="rt">Lucas Nasu Nielsen</span></div><div class="lrow"><span class="idx">[10]</span><span>Publicity &amp; Social Media</span><span class="rt">Elizabeth McCarthy Meek</span></div></div></div>
+  <div style="flex:1;min-height:.1in"></div>
+  <div class="lx" style="padding-top:.14in;border-top:.5pt solid var(--line)">
+   <div class="cap acc">Time &amp;<br>Place</div>
+   <div style="font-size:7pt">Mark Rothko’s studio on the Bowery, New York City. 1958–1959.</div></div>
+  <div class="lx" style="padding-top:.13in">
+   <div class="cap acc">Land<br>Acknowledgement</div>
+   <div style="font-size:6.1pt;line-height:1.5">We gratefully acknowledge that this production takes place on the unceded traditional territories of the xʷməθkʷəy̓əm (Musqueam), Sḵwx̱wú7mesh (Squamish) and səlilwətaɨ (Tsleil-Waututh) Nations. <span class="chip">Draft</span>
+    <div style="font-size:5.8pt;margin-top:.06in">*Member of Canadian Actors’ Equity Association. A Canadian Actors’ Equity Association production under the Artists’ Collective Policy.</div></div></div>
+ </div><div class="rf " style=""><span class="n">02</span><span>Triple M Productions</span></div>
+</section><section class="page wht recto"><div class="rh" style=""><span>Red — John Logan</span><span><span class="tag">02</span>The Painter &amp; The Play</span></div>
+ <div class="body" style="bottom:auto;height:3.75in">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+   <div class="xl">Mark<br><i class="acc">Roth</i>ko</div><div class="bn ">02</div></div>
+  <div style="flex:1;min-height:.2in"></div>
+  <div class="lx">
+   <div><span class="mk"></span><div class="cap acc" style="margin-top:.1in">The<br>Painter</div></div>
+   <div class="stmt">Soft-edged rectangles of colour floating on vast canvases, meant to be seen up close.</div></div>
+  <div class="spd" style="margin:.17in 0 .14in"><span>1903</span><span>Dvinsk — New York</span><span>1970</span></div>
+  <div class="cols2" style="font-size:6.6pt;line-height:1.6"><p>Born Marcus Rothkowitz in Dvinsk, in the Russian Empire (today Daugavpils, Latvia), Rothko emigrated with his family to Portland, Oregon, at the age of ten. After two years at Yale he left for New York, studied at the Art Students League and began painting city scenes and figures.</p><p style="margin-top:.07in">Through the 1940s his work moved from myth and surrealism toward pure abstraction. He became a central figure of Abstract Expressionism, though he rejected the label and insisted his paintings were about human emotion.</p><p style="margin-top:.07in">In 1958 he accepted a commission to paint murals for the Four Seasons restaurant in New York’s Seagram Building. He later withdrew and returned the fee.</p></div>
+ </div>
+ <div class="band" style="top:4.95in;background:url(img/paint_red.jpg) center/cover;color:#fff;padding:.42in .6in 0">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+   <div class="xl" style="font-size:40pt">The Play</div></div>
+  <div style="height:.22in"></div>
+  <div class="lx">
+   <div><span class="mk" style="background:#fff"></span><div class="cap" style="margin-top:.1in">John<br>Logan</div><div style="margin-top:.14in"><span class="chip">Draft texts<br>please review</span></div></div>
+   <div class="stmt">A fierce argument about art, commerce, mortality, and the generation that will one day take the master’s place.</div></div>
+  <div class="spd" style="margin:.17in 0 .14in;border-top-color:rgba(0,0,0,.18)"><span>Donmar 2009</span><span>Broadway 2010</span><span>Six Tonys</span></div>
+  <div class="cols2" style="font-size:6.6pt;line-height:1.6"><p>John Logan’s <i>Red</i> premiered at London’s Donmar Warehouse in December 2009 and transferred to Broadway the following year, where it won six Tony Awards, including Best Play.</p><p style="margin-top:.07in">Logan, screenwriter of <i>Gladiator</i>, <i>Hugo</i> and <i>Skyfall</i>, imagines Rothko at work on the Seagram murals with Ken, a young assistant of the playwright’s invention. Over two years in the studio the two men circle each other through argument, labour and silence.</p></div>
+ </div><div class="rf on-red" style=""><span>Triple M Productions</span><span class="n">03</span></div>
+</section><section class="page wht verso"><div class="rh" style=""><span>Red — John Logan</span><span><span class="tag">03</span>The Cast</span></div><div class="rf " style=""><span class="n">04</span><span>Triple M Productions</span></div>
+ <div class="body"><div class="th"><h1>The <i class="acc">Cast</i></h1><div class="bn ">03</div></div>
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:.24in;padding-top:.2in;min-height:0">
+   <div class="col">
+   <div style="position:relative;height:3.45in;background:#c8191e url(img/paint_red.jpg) center/cover;overflow:hidden"><img src="img/rob.png" style="position:absolute;bottom:0;left:50%;transform:translateX(-58%);height:100%"></div>
+   <div class="cap acc" style="margin-top:.16in">as Mark Rothko</div>
+   <div style="font-family:Ds;font-size:17pt;line-height:1;margin:.05in 0 .1in">Rob LaBelle</div>
+   <div><span class="chip">Bio to come from Rob</span></div>
+   <div style="font-size:6.6pt;line-height:1.55;margin-top:.08in;flex:1;overflow:hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. </div></div><div class="col">
+   <div style="position:relative;height:3.45in;background:#16191b url(img/paint_dark.jpg) center/cover;overflow:hidden"><img src="img/mozi.png" style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:100%"></div>
+   <div class="cap acc" style="margin-top:.16in">as Ken</div>
+   <div style="font-family:Ds;font-size:17pt;line-height:1;margin:.05in 0 .1in">Mozi Mayaleh</div>
+   <div><span class="chip">Bio to come from Mozi</span></div>
+   <div style="font-size:6.6pt;line-height:1.55;margin-top:.08in;flex:1;overflow:hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec ullamcorper nulla non metus auctor fringilla. Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. </div></div>
+  </div></div></section><section class="page wht recto">
+ <img class="a" src="img/reh_a.jpg" style="left:0;top:0;width:100%;height:4.6in;object-fit:cover">
+ <div class="rh" style="color:#fff"><span>Red — John Logan</span><span><span class="tag">04</span>In Rehearsal</span></div>
+ <div class="a bigcap" style="left:.6in;top:3.55in">In <i>Rehearsal</i></div>
+ <div class="body" style="top:4.88in">
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:.24in;min-height:0">
+   <img src="img/reh_b.jpg" style="width:100%;height:100%;object-fit:cover;min-height:0"><img src="img/reh_c.jpg" style="width:100%;height:100%;object-fit:cover;min-height:0"></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.12in"><span class="cap acc">In Rehearsal</span><span class="chip">Placeholder images · rehearsal photos to come</span></div>
+ </div><div class="rf " style=""><span>Triple M Productions</span><span class="n">05</span></div>
+</section><section class="page wht verso"><img class="a" src="img/hs_jennifer.jpg" style="top:.85in;right:0;width:3.25in;height:4.15in;object-fit:cover;object-position:50% 22%;filter:grayscale(1) contrast(1.04)"><div class="rh" style=""><span>Red — John Logan</span><span><span class="tag">05</span>Direction</span></div><div class="a" style="top:1.0in;bottom:3.75in;left:.6in;width:1.6in;display:flex;flex-direction:column;justify-content:flex-end;"><div class="cap acc">Director</div><div style="font-family:Ds;font-size:24pt;line-height:.98;margin-top:.08in">Jennifer<br>Copping</div></div>
+ <div class="body" style="top:5.25in"><div class="hr" style="padding-top:.2in;flex:1;min-height:0"><div class="cols2" style="font-size:7.3pt;line-height:1.72">Jennifer flows seamlessly between teaching, acting, directing, writing and mentoring emerging talent. <b>As director:</b> <i>The Big Funk; In the Boom Boom Room; Almost, Maine; Chicken; Good People; City of Angels; Zastrozzi: The Master of Discipline; Snowflake; Into the Woods.</i> <b>As actor (Arts Club):</b> <i>Reflections on Crooked Walking</i> (debut, 1987); <i>The Curious Incident of the Dog in the Night-Time; The Day Before Christmas; Godspell; White Christmas; Funny Girl; Kinky Boots.</i> <b>Other theatre (select):</b> <i>Annie</i> (Gateway); <i>Dance Nation</i> (The Search Party); <i>As You Like It / Julius Caesar</i> (BOTB); <i>Les Misérables</i> (Mirvish); <i>Joseph… Dreamcoat</i> (Drabinsky); <i>Tommy</i> (Mirvish); <i>Jersey Boys</i> (Dancap); <i>Indian Arm</i> (Rumble); <i>Detroit</i> &amp; <i>Body Awareness</i> (Mitch &amp; Murray); <i>City of Angels</i> (PIT Collective); <i>Anything Goes</i> (TUTS); <i>Anne of Green Gables</i> (Charlottetown). <b>Film &amp; TV (recent):</b> <i>Kryptic; The Hunting Party; Alaska Daily; Devil in Ohio; Debris.</i> <b>Other:</b> Best Actress Leo Award for <i>Becoming Redwood</i>. Instructor, Langara College Film Arts, and Artistic Associate for Mitch &amp; Murray Productions. Thank you to Aaron and Kate for your constant support and belief in me!</div></div></div><div class="rf " style=""><span class="n">06</span><span>Triple M Productions</span></div></section><section class="page wht recto"><img class="a" src="img/hs_rhonda.jpg" style="top:.85in;left:0;width:3.25in;height:4.15in;object-fit:cover;object-position:50% 22%;filter:grayscale(1) contrast(1.04)"><div class="rh" style=""><span>Red — John Logan</span><span><span class="tag">05</span>Direction</span></div><div class="a" style="top:1.0in;bottom:3.75in;right:.6in;width:1.6in;display:flex;flex-direction:column;justify-content:flex-end;text-align:right"><div class="cap acc">Producer</div><div style="font-family:Ds;font-size:24pt;line-height:.98;margin-top:.08in">Rhonda<br>Dent</div></div>
+ <div class="body" style="top:5.25in"><div class="hr" style="padding-top:.2in;flex:1;min-height:0"><div class="cols2" style="font-size:8.2pt;line-height:1.72">Rhonda Dent is a five-time Leo-nominated Canadian actress, writer, producer, and director with over 25 years of professional experience. She is a graduate of the University College of the Fraser Valley’s theatre program and Langara College’s Film Arts Directing program. Rhonda has appeared in numerous film and television productions, including leading roles in Lifetime Movies of the Week. A lifelong storyteller, Rhonda has produced over ten live theatre productions through Paige 18 Productions, while writing and producing original work for the screen. She is currently developing <i>Footprints</i>, a feature-length Sasquatch adventure mystery set in the ancient forests of the Pacific Northwest, slated to film in Fall 2027.</div></div></div><div class="rf " style=""><span>Triple M Productions</span><span class="n">07</span></div></section><section class="page wht verso"><div class="rh" style=""><span>Red — John Logan</span><span><span class="tag">06</span>The Team</span></div>
+ <div class="body">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.2in;"><div class="col"><img class="ph" src="img/hs_starlynn.jpg"></div><div class="col"><img class="ph" src="img/hs_sam.jpg"></div><div class="col"><img class="ph" src="img/hs_ben.jpg"></div></div>
+  <div style="height:.78in;display:flex;justify-content:space-between;align-items:center"><div style="font-family:Ds;font-size:44pt;line-height:1;letter-spacing:-.025em">De<i class="acc">sign</i></div><div class="bn ">06</div></div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.2in;flex:1;min-height:0;padding-top:.14in;border-top:.5pt solid var(--line)"><div class="col"><div class="cap acc">Production Designer</div><div class="nm">Starlynn Chen</div><div class="tx">Starlynn Chen (she/her) is an emerging set and costume designer and a graduate of the Production Program at Studio 58. <b>Recent credits:</b> set and costume design for <i>The Birds</i> (Studio 58), <i>Avenue Q</i> (Metro Theatre); set design for <i>Running Wilde</i> (United Players), <i>The Paper Bag Princess</i> (Carousel Theatre), <i>A Journal of the Plague Year</i> (Studio 58), <i>Jack and the Beanstalk</i> (Metro Theatre), and <i>Linck and Mülhahn</i> (Studio 58); costume design for <i>A Streetcar Named Desire</i> &amp; <i>Peerless</i> (ETC), <i>The Undeniable Accusations of Red Cadmium Light</i> (Firehall Arts Centre), <i>The Replacement Wife</i> (United Players), <i>The Odd Couple</i> (Theatre NorthWest), and <i>James and the Giant Peach</i> (CTORA). Her set and costume design for <i>Rent</i> (Metro Theatre) received the 2025 Ovation Award for Outstanding Set Design (Large Theatre). @starlynn.jingjingdyah</div></div><div class="col"><div class="cap acc">Lighting Designer</div><div class="nm">Sam Cheng</div><div class="tx">Originally from Hong Kong, Sam is an emerging artist from UBC Theatre Design and Production, specializing in scenic and lighting design and technical direction. <b>Select lighting design credits:</b> <i>The Lawyer Show: 9 to 5</i> (Touchstone Theatre), <i>A Streetcar Named Desire</i> (Ensemble Theatre Company), <i>Citysong</i> (VitalSpark Theatre), <i>Pippin</i> (Play On Words Production), <i>Salt-Water Moon</i> (Western Gold Theatre), and <i>Metamorphoses</i> (United Players of Vancouver). samchengwx.com</div></div><div class="col"><div class="cap acc">Sound Designer</div><div class="nm">Ben Elliott</div><div class="tx">Ben Elliott is a Vancouver-based sound designer, composer and musical director whose work spans two decades on stages across Canada and the United States. Credits include <i>Comedy of Errors</i> (Bard on the Beach), <i>I, Claudia</i>, <i>King Charles III</i> and <i>Other Desert Cities</i> (Arts Club), <i>Our Man in Havana</i> (Vertigo/Persephone) and <i>A Christmas Carol</i> (Pacific Theatre). He has composed original scores for <i>Cymbeline</i> and <i>Measure for Measure</i> at Bard, <i>King Lear</i> and <i>Hamlet</i> for the Honest Fishmonger’s Co-op, and the TV pilots <i>Hello Charlie</i> and <i>Humantown</i>. He won a Sterling Award for his musical direction of <i>A Midsummer Night’s Dream: The ’70s Musical</i> (The Citadel) and a Jessie Award for musical direction (<i>The Merry Wives of Windsor</i>), and has received a Dora Mavor Moore Award nomination (<i>RETOLD</i>, The Musical Stage Company) and Jessie nominations for sound design and original score. Ben is a graduate of Studio 58.</div></div></div>
+ </div><div class="rf " style=""><span class="n">08</span><span>Triple M Productions</span></div></section><section class="page wht recto"><div class="rh" style=""><span>Red — John Logan</span><span><span class="tag">06</span>The Team</span></div>
+ <div class="body">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.2in;"><div class="col"><img class="ph" src="img/hs_gerri.jpg"></div><div class="col"><img class="ph" src="img/hs_lucas.jpg"></div><div class="col"><img class="ph" src="img/hs_liz.jpg"></div></div>
+  <div style="height:.78in;display:flex;justify-content:space-between;align-items:center"><div style="font-family:Ds;font-size:40pt;line-height:1;letter-spacing:-.025em">Pro<i class="acc">duction</i></div></div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.2in;flex:1;min-height:0;padding-top:.14in;border-top:.5pt solid var(--line)"><div class="col"><div class="cap acc">Stage Manager</div><div class="nm">Gerri Torres</div><div class="tx">Gerri is honoured to be joining this esteemed group of theatre artists in bringing you this production of <i>RED</i>. With 11 years of experience as an Assistant Stage Manager, she is so excited to be taking on the role of Stage Manager for the first time. <b>Past credits include:</b> <i>My Fair Lady, Anything Goes, Fiddler on the Roof, Cabaret, Singin’ in the Rain, Crazy for You, Mary Poppins, Nine to Five, Shrek</i> (RCMT); <i>City of Angels</i> (PIT Collective); <i>They Used To Call Me Marie</i> (Savage Society); <i>Pippin, Children of Eden</i> (POW); <i>Grease</i> (CTORA). Gerri would like to thank all her friends, family and work colleagues at Air Canada for their constant love and support. Special thanks to Jennifer Copping for this opportunity and to Inga McLaughlin for her wisdom and guidance.</div></div><div class="col"><div class="cap acc">Assistant Stage Manager</div><div class="nm">Lucas Nasu Nielsen</div><div class="tx">Lucas Nasu Nielsen is a filmmaker and theatre artist with a degree in Media and Performance Production from Queen’s University. He has worked as a writer, director, producer, and editor on several award-winning film projects and previously served as a producer for the Dan Studio Series at Queen’s. He is excited to be joining the team of <i>RED</i> as Assistant Stage Manager and grateful for the opportunity to collaborate with such a talented cast and crew.</div></div><div class="col"><div class="cap acc">Publicity &amp; Social Media</div><div class="nm">Elizabeth McCarthy Meek</div><div class="tx">Elizabeth McCarthy Meek is a Vancouver-based social media manager, marketing expert and professional actress. Through her agency, EPL Social Marketing (Ethos, Pathos, Logos), she combines two decades of marketing expertise with a deep-rooted passion for storytelling. Elizabeth holds a Bachelor of Communications (Distinction) from Capilano University and manages the public relations and digital strategy for this production. Her screen credits include <i>Peacemaker</i>, <i>Nancy Drew</i>, <i>The Twilight Zone</i>, and <i>The X-Files</i>.</div></div></div>
+ </div><div class="rf " style=""><span>Triple M Productions</span><span class="n">09</span></div></section><section class="page wht verso"><div class="rh" style=""><span>Red — John Logan</span><span><span class="tag">07</span>With Gratitude</span></div>
+ <div class="body" style="bottom:4.6in"><div class="th"><h1>Thank <i class="acc">You</i></h1><div class="bn ">07</div></div>
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1.22in;gap:.22in;padding-top:.16in;min-height:0">
+   <div><span class="chip">List to come from Jennifer &amp; Rhonda</span><div style="columns:2;column-gap:.2in;margin-top:.08in;font-size:7.3pt"><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div><div style="padding:.055in 0;border-bottom:.5pt solid var(--line)">Name Surname</div></div></div>
+   <img src="img/can.jpg" style="width:100%;height:100%;object-fit:cover;min-height:0"></div></div>
+ <div class="a" style="left:0;right:0;bottom:0;height:4.375in;background:#dcdad5;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:6">
+  <div class="cap">Half-page advertisement</div><div style="font-family:Ds;font-size:24pt;margin:.08in 0"><i>Eureka Day</i></div>
+  <div class="cap" style="line-height:1.9">Mitch &amp; Murray Productions<br>5.5 × 4.25 in + 0.125 in bleed · PDF or 300 dpi JPG</div></div>
+</section><section class="page wht recto"><div class="rh" style=""><span>Red — John Logan</span><span><span class="tag">08</span>Supporters</span></div><div class="rf " style=""><span>Triple M Productions</span><span class="n">11</span></div>
+ <style>.lg{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,1fr);min-height:0}.lc{display:flex;align-items:center;justify-content:center;padding:.2in;min-height:0;border-top:.5pt solid var(--line)}.lc:nth-child(odd):not(.wide){border-right:.5pt solid var(--line)}.lc.wide{grid-column:1/3}.lc img{max-width:100%;height:.7in;width:auto;object-fit:contain}.lc img.sq{height:1.05in}</style>
+ <div class="body"><div class="th"><h1>Our <i class="acc">Supporters</i></h1><div class="bn ">08</div></div>
+  <div style="padding:.16in 0;display:grid;grid-template-columns:1.25in 1fr"><div class="cap acc" style="padding-top:.03in">With thanks</div><div>Triple M Productions gratefully acknowledges the partners and sponsors whose generosity brought <i>Red</i> to the stage.</div></div>
+  <div class="lg"><div class="lc"><img class="" src="img/logo_tbirdlogo1000.png"></div><div class="lc"><img class="" src="img/logo_logonic3positi.png"></div><div class="lc"><img class="" src="img/logo_rhondadentlogo.png"></div><div class="lc"><img class="sq" src="img/logo_alcantarassoci.png"></div><div class="lc wide"><img class="sq" src="img/logo_eplsocialmarke.png"></div></div></div></section><section class="page blk back" style="background:#070908">
+ <img class="a" src="img/brush.jpg" style="left:0;top:-.5in;width:100%">
+ <div class="a" style="left:0;right:0;top:4.6in;bottom:0;background:linear-gradient(rgba(7,9,8,0),#070908 55%);z-index:2"></div>
+ <div class="a" style="left:.6in;right:.6in;bottom:.5in;z-index:6">
+  <div style="font-family:Ds;font-style:italic;font-size:19pt;color:#c8191e;line-height:1">“What do you see?”</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.3in;margin-top:.28in;padding-top:.16in;border-top:.5pt solid var(--line)">
+   <div><div style="font-family:Ds;font-size:15pt;line-height:1">Triple M Productions</div><div class="cap" style="margin-top:.1in;line-height:1.9;opacity:.8">Red by John Logan<br>Dec 8–12, 2026 · 8 PM<br>The Nest, Granville Island</div></div>
+   <div><div class="cap" style="line-height:1.9;opacity:.8">Website<br>Instagram / Facebook<br>Email</div><div style="margin-top:.07in"><span class="chip">Contact details to confirm</span></div></div></div></div>
+</section></body></html>
